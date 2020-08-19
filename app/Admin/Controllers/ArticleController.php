@@ -29,6 +29,8 @@ class ArticleController extends AdminController
         $grid = new Grid(new Article);
         $grid->model()->where('type', 'article');
 
+        $grid->quickSearch('name', 'email', 'title', 'content');
+
         $grid->filter(function($filter) {
             $filter->disableIdFilter();
             $filter->column(1/2, function ($filter) {

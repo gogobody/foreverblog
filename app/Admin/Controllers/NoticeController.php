@@ -29,7 +29,7 @@ class NoticeController extends AdminController
         $grid = new Grid(new Article);
         $grid->model()->where('type', 'notice');
 
-        $grid->quickSearch();
+        $grid->quickSearch('name', 'email', 'title', 'content');
 
         $grid->filter(function($filter) {
             $filter->disableIdFilter();

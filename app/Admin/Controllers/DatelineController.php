@@ -28,6 +28,7 @@ class DatelineController extends AdminController
         $grid = new Grid(new Dateline);
 
         $grid->quickSearch('content');
+
         $grid->filter(function($filter) {
             // 去掉默认的id过滤器
             $filter->disableIdFilter();

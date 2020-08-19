@@ -40,6 +40,8 @@ class BlogController extends AdminController
     {
         $grid = new Grid(new Blog);
 
+        $grid->quickSearch('name', 'email', 'link', 'slug', 'message');
+
         $grid->filter(function ($filter) {
             $filter->disableIdFilter();
             $filter->column(1 / 2, function ($filter) {
