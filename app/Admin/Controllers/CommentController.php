@@ -117,7 +117,7 @@ class CommentController extends AdminController
         $show->field('name', __('名称'));
         $show->field('link', __('链接'));
         $show->field('content', __('评论内容'));
-        $show->field('status', __('状态'));
+        $show->field('status', __('状态'))->using([0 => '违规', 1 => '正常', 2 => '审核中'])->label();
         $show->field('created_at', __('评论时间'));
 
         return $show;

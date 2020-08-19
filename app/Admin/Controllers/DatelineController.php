@@ -68,7 +68,6 @@ class DatelineController extends AdminController
         $show = new Show(Dateline::findOrFail($id));
 
         $show->field('id', __('Id'));
-        // $show->field('blog_id', __('Blog id'));
         $show->field('date', __('日期'));
         $show->field('content', __('内容'));
         $show->field('created_at', __('创建时间'));

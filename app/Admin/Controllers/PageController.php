@@ -82,13 +82,8 @@ class PageController extends AdminController
         $show->field('id', __('ID'));
         $show->field('title', __('页面标题'));
         $show->field('read_num', __('阅读量'));
-        $show->field('content', __('内容'));
-        $show->field('is_comment', __('是否允许评论'))
-            ->using([0 => '否', 1 => '是'])
-            ->dot([
-                0 => 'danger',
-                1 => 'success',
-            ], 'warning');
+        $show->field('content', __('内容'))->unescape();
+        $show->field('is_comment', __('是否允许评论'))->using([0 => '否', 1 => '是']);
         $show->field('key', __('标识'));
         $show->field('updated_at', __('更新时间'));
         $show->field('created_at', __('创建时间'));

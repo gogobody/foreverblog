@@ -29,8 +29,6 @@ class ArticleController extends AdminController
         $grid = new Grid(new Article);
         $grid->model()->where('type', 'article');
 
-        $grid->quickSearch('name', 'email', 'title', 'content');
-
         $grid->filter(function($filter) {
             $filter->disableIdFilter();
             $filter->column(1/2, function ($filter) {
@@ -89,13 +87,8 @@ class ArticleController extends AdminController
         $show->field('email', __('发布人邮箱'));
         $show->field('title', __('标题'));
         $show->field('read_num', __('阅读量'));
-        $show->field('content', __('内容'));
-        $show->field('is_comment', __('是否允许评论'))
-            ->using([0 => '否', 1 => '是'])
-            ->dot([
-                0 => 'danger',
-                1 => 'success',
-            ], 'warning');
+        $show->field('content', __('内容'))->unescape();
+        $show->field('is_comment', __('是否允许评论'))->using([0 => '否', 1 => '是']);
         $show->field('type', __('类型'))->using(Article::TYPES);
 
         $show->field('updated_at', __('更新时间'));

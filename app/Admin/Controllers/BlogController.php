@@ -95,6 +95,23 @@ class BlogController extends AdminController
     {
         $show = new Show(Blog::findOrFail($id));
 
+        $show->field('id', __('ID'));
+        $show->field('name', __('博客名称'));
+        $show->field('link', __('网址'))->link();
+        $show->field('email', __('邮箱'));
+        $show->field('message', __('寄语'));
+        $show->field('status', __('状态'))
+            ->using([0 => '审核中', 1 => '正常', 2 => '未通过', 3 => '疑似异常', 4 => '异常'])->label();
+        $show->field('is_comment', __('是否允许评论'))->using([0 => '否', 1 => '是'])->label();
+        $show->field('history', __('历史事件'));
+        $show->field('views', __('浏览量'));
+        $show->field('slug', 'Slug');
+        $show->field('is_notify', __('邮件通知'))->using([0 => '未通知', 1 => '已通知'])->label();
+        $show->field('abnormal_num', __('异常次数'));
+        $show->field('abnormal_at', __('上次异常时间'));
+        $show->field('updated_at', __('更新时间'));
+        $show->field('created_at', __('创建时间'));
+
         return $show;
     }
 

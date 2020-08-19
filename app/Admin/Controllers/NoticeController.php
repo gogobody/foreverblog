@@ -29,8 +29,6 @@ class NoticeController extends AdminController
         $grid = new Grid(new Article);
         $grid->model()->where('type', 'notice');
 
-        $grid->quickSearch('name', 'email', 'title', 'content');
-
         $grid->filter(function($filter) {
             $filter->disableIdFilter();
             $filter->column(1/2, function ($filter) {
@@ -93,7 +91,7 @@ class NoticeController extends AdminController
         $show->field('email', __('发布人邮箱'));
         $show->field('title', __('标题'));
         $show->field('read_num', __('阅读量'));
-        $show->field('content', __('内容'));
+        $show->field('content', __('内容'))->unescape();
         $show->field('is_comment', __('是否允许评论'))
             ->using([0 => '否', 1 => '是'])
             ->dot([
