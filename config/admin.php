@@ -405,6 +405,10 @@ return [
             'config' => [
                 'lang'   => 'zh-CN',
             ]
-        ]
+        ],
+
+        'media-manager' => [
+            'disk' => 'public', // 指向config/filesystem.php中设置的disk
+        ],
     ],
 ];
