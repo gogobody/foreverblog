@@ -10,7 +10,7 @@
     "require": {
         "php": "^7.2",
         "caouecs/laravel-lang": "^4.0",
-        "encore/laravel-admin": "^1.7",
+        "encore/laravel-admin": "1.8.1",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.4",
         "laravel-admin-ext/media-manager": "^1.1",
