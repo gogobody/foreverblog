@@ -50,7 +50,7 @@ class Send extends RowAction
                 $mail->subject($title);
                 if ($type == 1 || $type == 2) {
                     // 审核通过或驳回增加附件
-                    $mail->attach(storage_path('十年之约公约.pdf'));
+                    $mail->attach(config('filesystems.disks.public.root') . '/十年之约公约.pdf');
                 }
             });
 
