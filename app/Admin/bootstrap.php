@@ -31,6 +31,7 @@ Admin::navbar(function (\Encore\Admin\Widgets\Navbar $navbar) {
 
 Grid::init(function (Grid $grid) {
     $grid->model()->orderByDesc('id');
+    $grid->disableExport(); // 禁用表格导出
 });
 
 Form::init(function (Form $form) {

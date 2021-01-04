@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Blog\Send;
+use App\Admin\Extensions\BlogsExporter;
 use App\Blog;
 use App\Config;
 use Encore\Admin\Controllers\AdminController;
@@ -39,6 +40,7 @@ class BlogController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Blog);
+        $grid->exporter(new BlogsExporter)->disableExport(false);
 
         $grid->quickSearch('name', 'email', 'link', 'slug', 'message');
 
@@ -54,23 +56,20 @@ class BlogController extends AdminController
             });
         });
 
-        $grid->column('id', 'ID')->sortable();
-        $grid->column('name', __('博客名称'))->editable()
-            ->modal('大事记', function ($model) {
-                $datelines = $model->datelines()->orderBy('created_at', 'desc')->get()->map(function ($dateline) {
-                    return $dateline->only(['id', 'date', 'content']);
-                });
-                return new Table(['ID', __('记录时间'), __('内容')], $datelines->toArray());
+        $grid->column('id', 'ID')->sortable()->modal('大事记', function ($model) {
+            $datelines = $model->datelines()->orderBy('created_at', 'desc')->get()->map(function ($dateline) {
+                return $dateline->only(['id', 'date', 'content']);
             });
+            return new Table(['ID', __('记录时间'), __('内容')], $datelines->toArray());
+        });
+        $grid->column('name', __('博客名称'))->editable();
         $grid->column('avatar', __('头像'))->display(function ($avatar) {
             return '<img style="border-radius: 50%" width="20" src="' . $avatar . '">';
         });
         $grid->column('email', __('邮箱'));
         $grid->column('link', __('链接地址'))->link()->copyable();
         $grid->column('slug', __('Slug'))->editable();
-        $grid->column('message', __('寄语'))->display(function ($message) {
-            return Str::limit($message, 60);
-        });
+        $grid->column('message', __('寄语'))->limit(40);
         $grid->column('views', __('阅读量'))->sortable();
         $grid->column('status', __('状态'))->filter(Blog::STATUS)->editable('select', Blog::STATUS);
         $grid->column('is_notify', __('邮件通知'))->bool();
@@ -129,7 +128,7 @@ class BlogController extends AdminController
         $form->email('email', __('邮箱'))
             ->rules('required|email')
             ->creationRules(['required', "unique:blog"])
-            ->updateRules(['required', "unique:blog,email,{{id}}"]);
+            ->updateRules(['required']);
         $form->url('link', __('链接地址'))->rules('required|url');
         $form->text('slug', __('Slug'))
             ->creationRules([
