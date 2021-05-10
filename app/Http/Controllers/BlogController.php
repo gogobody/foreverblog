@@ -6,22 +6,43 @@ use App\Blog;
 use App\Config;
 use App\Http\Resources\Blogs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
 
 class BlogController extends Controller
 {
-    public function blogs()
+    public function blogs(Request $request)
     {
+        $years = $this->getBlogYears();
+        $year = is_numeric($request->year) ? $request->year : min($years);
         // 正常博客
-        $normal = Blog::whereIn('status', [1, 3])->select()->orderBy('created_at', 'asc')->offset(0)->limit(100)->get();
+        $normal = Blog::query()
+            ->whereIn('status', [1, 3])
+            ->select()
+            ->whereYear('created_at', $year)
+            ->orderBy('created_at', 'asc')
+            ->offset(0)
+            ->limit(100)
+            ->get();
         // 异常博客
-        $abnormal = Blog::where('status', 4)->select()->orderBy('created_at', 'asc')->get();
-        return view('layouts.blogs.list', compact('normal', 'abnormal'));
+        $abnormal = Blog::query()
+            ->where('status', 4)
+            ->select()
+            ->orderBy('created_at', 'asc')
+            ->get();
+        return view('layouts.blogs.list', compact('years', 'year', 'normal', 'abnormal'));
     }
 
-    public function items()
+    public function items(Request $request)
     {
-        $normal = Blog::whereIn('status', [1, 3])->select()->orderBy('created_at', 'asc')->paginate(100);
+        $years = $this->getBlogYears();
+        $year = is_numeric($request->year) ? $request->year : min($years);
+        $normal = Blog::query()
+            ->whereIn('status', [1, 3])
+            ->select()
+            ->whereYear('created_at', $year)
+            ->orderBy('created_at', 'asc')
+            ->paginate(100);
         return Blogs::collection($normal);
     }
 
@@ -96,5 +117,14 @@ class BlogController extends Controller
         }
 
         return view('layouts.blogs.join', compact('closeApply'));
+    }
+
+    private function getBlogYears(): array
+    {
+        return Blog::query()->orderBy('created_at')->pluck('created_at')->transform(function ($at) {
+            if ($at instanceof Carbon) {
+                return $at->year;
+            }
+        })->unique()->toArray();
     }
 }

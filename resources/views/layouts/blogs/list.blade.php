@@ -13,6 +13,11 @@
 
         <!-- One -->
         <section class="wrapper style3 container special" id="blogs">
+            <ul id="tabs">
+                @foreach($years as $i)
+                <li data-year="{{ $i }}" class="@if($i == $year) active @endif">{{ $i }}</li>
+                @endforeach
+            </ul>
 
             <ul id="normal">
                 @if(count($normal))
@@ -88,7 +93,7 @@
                 },
                 url: '{{ url('/api/blogs') }}',
                 type: 'post',
-                data: {page: page},
+                data: {page: page, year: $('#tabs li.active').data('year')},
                 dataType: 'json',
                 success: function (response) {
                     var data = response.data;
@@ -132,6 +137,10 @@
 
     $('#show-more:not(disabled)').click(function () {
         more();
+    });
+
+    $('#tabs li').click(function () {
+        window.location.href = '/blogs.html?year=' + $(this).data('year');
     });
 </script>
 @endsection
