@@ -13,11 +13,11 @@
 
         <!-- One -->
         <section class="wrapper style3 container special" id="blogs">
-            <ul id="tabs">
+            <ol id="tabs">
                 @foreach($years as $i)
                 <li data-year="{{ $i }}" class="@if($i == $year) active @endif">{{ $i }}</li>
                 @endforeach
-            </ul>
+            </ol>
 
             <ul id="normal">
                 @if(count($normal))

@@ -164,7 +164,7 @@ ul.pagination li.page-item .page-link {
   flex-wrap: wrap;
   padding: 1em;
 }
-#blogs ul#tabs {
+#blogs ol#tabs {
   display: flex;
   width: 100%;
   max-width: 100%;
@@ -174,7 +174,7 @@ ul.pagination li.page-item .page-link {
   overflow-x: auto;
   white-space: nowrap;
 }
-#blogs ul#tabs li {
+#blogs ol#tabs li {
   width: 100px;
   border-radius: 3px;
   flex: 1;
@@ -184,26 +184,23 @@ ul.pagination li.page-item .page-link {
   list-style: none;
   cursor: pointer;
 }
-#blogs ul#tabs li.active,
-#blogs ul#tabs li:hover {
+#blogs ol#tabs li.active,
+#blogs ol#tabs li:hover {
   background-color: #f1f1f1;
 }
-#blogs ul#normal,
-#blogs ul#abnormal {
+#blogs ul {
   width: 100%;
   padding: 0;
   text-align: center;
   margin-bottom: 2rem;
 }
-#blogs ul#normal li,
-#blogs ul#abnormal li {
+#blogs ul li {
   display: inline-flex;
   height: 70px;
   padding: 5px;
   width: calc(25% - 5px);
 }
-#blogs ul#normal li .item,
-#blogs ul#abnormal li .item {
+#blogs ul li .item {
   display: flex;
   width: 100%;
   overflow: hidden;
@@ -213,22 +210,18 @@ ul.pagination li.page-item .page-link {
   box-shadow: 0 0 20px 0 #eaeaea;
   transition: all 0.3s;
 }
-#blogs ul#normal li .item.gray,
-#blogs ul#abnormal li .item.gray {
+#blogs ul li .item.gray {
   background: rgba(189, 189, 189, 0.48);
   opacity: 0.8;
 }
-#blogs ul#normal li .item:not(.gray):hover,
-#blogs ul#abnormal li .item:not(.gray):hover {
+#blogs ul li .item:not(.gray):hover {
   margin-top: -10px;
   box-shadow: 0 0 20px 0 #c7c7c7;
 }
-#blogs ul#normal li .item:not(.gray):hover img,
-#blogs ul#abnormal li .item:not(.gray):hover img {
+#blogs ul li .item:not(.gray):hover img {
   width: 70px;
 }
-#blogs ul#normal li .item img,
-#blogs ul#abnormal li .item img {
+#blogs ul li .item img {
   display: flex;
   height: 100%;
   width: 60px;
@@ -236,8 +229,7 @@ ul.pagination li.page-item .page-link {
   object-fit: cover;
   transition: all 0.3s;
 }
-#blogs ul#normal li .item .meta,
-#blogs ul#abnormal li .item .meta {
+#blogs ul li .item .meta {
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -245,8 +237,7 @@ ul.pagination li.page-item .page-link {
   line-height: initial;
   justify-content: space-around;
 }
-#blogs ul#normal li .item .meta h4,
-#blogs ul#abnormal li .item .meta h4 {
+#blogs ul li .item .meta h4 {
   padding: 0;
   margin: 0;
   font-size: 15px;
@@ -259,19 +250,16 @@ ul.pagination li.page-item .page-link {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
-#blogs ul#normal li .item .meta span,
-#blogs ul#abnormal li .item .meta span {
+#blogs ul li .item .meta span {
   font-size: 14px;
   color: gray;
 }
-#blogs ul#normal.hide,
-#blogs ul#abnormal.hide {
+#blogs ul.hide {
   position: relative;
   height: 70px;
   overflow: hidden;
 }
-#blogs ul#normal.hide .show-all,
-#blogs ul#abnormal.hide .show-all {
+#blogs ul.hide .show-all {
   display: block;
 }
 #blogs #show-more,
