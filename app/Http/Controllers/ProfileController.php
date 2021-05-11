@@ -55,6 +55,9 @@ class ProfileController extends Controller
         if (!$time = strtotime($request->date)) {
             return $this->error('时间格式不正确');
         }
+        if ($time > time()) {
+            return $this->error('不能大于当前时间');
+        }
         if (!$content) {
             return $this->error('请输入大事记内容');
         }
