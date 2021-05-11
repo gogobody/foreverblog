@@ -42,12 +42,12 @@
                             <td>浏览量</td>
                             <td>{{ $blog->views }}</td>
                         </tr>
-                        <tr>
+                        <!--<tr>
                             <td>是否允许评论</td>
                             <td>
                                 <input class="switch" name="is_comment" type="checkbox" {{ $blog->is_comment ? 'checked' : ''  }}/>
                             </td>
-                        </tr>
+                        </tr>-->
                         <tr>
                             <td>异常次数</td>
                             <td>{{ $blog->abnormal_num }}</td>

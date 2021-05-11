@@ -23,6 +23,7 @@ class ProfileController extends Controller
      */
     public function blogChange(Request $request)
     {
+        exit;
         /** @var Blog $blog */
         $blog = $request->blog;
         switch ($request->field) {
