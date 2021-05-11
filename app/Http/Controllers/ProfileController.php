@@ -48,6 +48,9 @@ class ProfileController extends Controller
     {
         /** @var Blog $blog */
         $blog = $request->blog;
+        if ($blog->datelines()->where('status', 0)->count()) {
+            return $this->error('您的博客存在正在审核的大事记，请等待该审核处理后继续提交。');
+        }
         $content = $request->input('content');
         if (!$time = strtotime($request->date)) {
             return $this->error('时间格式不正确');

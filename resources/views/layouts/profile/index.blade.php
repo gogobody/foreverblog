@@ -27,12 +27,12 @@
                             <td><a href="{{ $blog->detail_url }}" target="_blank">{{ $blog->detail_url }}</a></td>
                         </tr>
                         <tr>
-                            <td>URL Slug</td>
-                            <td>{!! $blog->slug ? url('/blog', '', true) . "/<b>{$blog->slug}</b>.html" : '-' !!}</td>
-                        </tr>
-                        <tr>
                             <td>博客地址</td>
                             <td><a href="{{ $blog->link }}" target="_blank">{{ $blog->link }}</a></td>
+                        </tr>
+                        <tr>
+                            <td>URL Slug</td>
+                            <td>{!! $blog->slug ? url('/blog', '', true) . "/<b>{$blog->slug}</b>.html" : '-' !!}</td>
                         </tr>
                         <tr>
                             <td>寄语</td>
@@ -66,7 +66,14 @@
                 <div id="tab-dateline">
                     <input type="datetime-local" name="date" placeholder="请输入日期">
                     <textarea name="content" placeholder="请输入大事记内容，支持 markdown 语法" rows="3" style="resize: vertical; margin-top: 0px; margin-bottom: 0px; height: 134px;"></textarea>
+                    @if($blog->datelines->where('status', 0)->count())
+                    <p style="text-align: center;margin-top: 1rem">
+                        <i class="fa fa-warning"></i>
+                        当前博客存在正在审核的大事记，请等待该审核处理后继续提交
+                    </p>
+                    @else
                     <a href="javascript:void(0);" id="dateline-submit" class="button">提交大事记</a>
+                    @endif
                 </div>
             </div>
         </div>
