@@ -69,7 +69,7 @@
             type: "post",
             data: {
                 email: $('[name=email]').val(),
-                value: $('[name=code]').val(),
+                code: $('[name=code]').val(),
                 _token: $('[name="csrf-token"]').attr('content'),
             },
             dataType: "json",
