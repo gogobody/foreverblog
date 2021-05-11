@@ -23,6 +23,10 @@
                             <td>{{ $blog->name }}</td>
                         </tr>
                         <tr>
+                            <td>博客主页</td>
+                            <td><a href="{{ $blog->detail_url }}" target="_blank">{{ $blog->detail_url }}</a></td>
+                        </tr>
+                        <tr>
                             <td>博客地址</td>
                             <td><a href="{{ $blog->link }}" target="_blank">{{ $blog->link }}</a></td>
                         </tr>
@@ -32,7 +36,7 @@
                         </tr>
                         <tr>
                             <td>URL Slug</td>
-                            <td>{{ $blog->slug ?: '-' }}</td>
+                            <td>{!! $blog->slug ? url('/blog', '', true) . "/<b>{$blog->slug}</b>.html" : '-' !!}</td>
                         </tr>
                         <tr>
                             <td>浏览量</td>
