@@ -26,6 +26,9 @@ class CommentController extends Controller
             if (!$article = Article::find($data['foreign_id'])) {
                 throw new \Exception('不存在的资源');
             }
+            if (!$article->is_comment) {
+                throw new \Exception('管理员已关闭评论');
+            }
             $data['type'] = 'article';
             $content = $data['content'];
             if (!$created = Comment::create($data)) {
@@ -84,6 +87,10 @@ class CommentController extends Controller
 
             if (!$blog = Blog::find($data['foreign_id'])) {
                 throw new \Exception('不存在的资源');
+            }
+
+            if (!$blog->is_comment) {
+                throw new \Exception('博主已关闭评论');
             }
 
             $data['type'] = 'blog';
