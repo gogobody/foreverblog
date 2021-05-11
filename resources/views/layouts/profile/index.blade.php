@@ -64,7 +64,7 @@
                     </table>
                 </div>
                 <div id="tab-dateline">
-                    <input type="datetime-local" name="date" placeholder="请输入日期">
+                    <input type="datetime-local" name="date" placeholder="请输入日期" value="{{ date('Y-m-d\TH:i:s') }}">
                     <textarea name="content" placeholder="请输入大事记内容，支持 markdown 语法" rows="3" style="resize: vertical; margin-top: 0px; margin-bottom: 0px; height: 134px;"></textarea>
                     @if($blog->datelines->where('status', 0)->count())
                     <p style="text-align: center;margin-top: 1rem">
