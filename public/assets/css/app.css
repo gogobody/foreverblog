@@ -311,6 +311,11 @@ ul.pagination li.page-item .page-link {
   min-width: 100%;
   line-height: 2.75em;
 }
+#profile-box {
+  margin: auto;
+  width: 90%;
+  min-width: 95%;
+}
 #profile-box ol#tabs {
   display: flex;
   width: 100%;

@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
     @yield('head')
     <link rel="stylesheet" href="/assets/css/main.css?ver=20200102" />
-    <link rel="stylesheet" href="/assets/css/app.css?ver=202105110522" />
+    <link rel="stylesheet" href="/assets/css/app.css?ver=202105110547" />
     <noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
 </head>
 <body class="index is-preload">
