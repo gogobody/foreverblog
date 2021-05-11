@@ -27,16 +27,16 @@
                             <td><a href="{{ $blog->detail_url }}" target="_blank">{{ $blog->detail_url }}</a></td>
                         </tr>
                         <tr>
+                            <td>URL Slug</td>
+                            <td>{!! $blog->slug ? url('/blog', '', true) . "/<b>{$blog->slug}</b>.html" : '-' !!}</td>
+                        </tr>
+                        <tr>
                             <td>博客地址</td>
                             <td><a href="{{ $blog->link }}" target="_blank">{{ $blog->link }}</a></td>
                         </tr>
                         <tr>
                             <td>寄语</td>
                             <td>{{ $blog->message }}</td>
-                        </tr>
-                        <tr>
-                            <td>URL Slug</td>
-                            <td>{!! $blog->slug ? url('/blog', '', true) . "/<b>{$blog->slug}</b>.html" : '-' !!}</td>
                         </tr>
                         <tr>
                             <td>浏览量</td>
@@ -54,7 +54,7 @@
                         </tr>
                         <tr>
                             <td>上次异常时间</td>
-                            <td>{{ $blog->abnormal_at ?: '-' }}</td>
+                            <td>{{ $blog->abnormal_at ? date('Y-m-d H:i:s', $blog->abnormal_at) : '-' }}</td>
                         </tr>
                         <tr>
                             <td>加入时间</td>
