@@ -45,7 +45,9 @@ class DatelineController extends AdminController
         });
 
         $grid->column('id', __('ID'));
-         $grid->column('blog.name', __('博客名称'));
+        $grid->column('blog.name', __('博客名称'))->display(function ($value) {
+            return '<a target="_blank" href="'.$this->blog->detail_url.'">'.Str::limit(strip_tags($value), 6).'</a>';
+        });
         $grid->column('date', __('日期'))->sortable()->editable('datetime')->filter('range', 'datetime');
         $grid->column('content', __('内容'))->display(function ($content) {
             return Str::limit(strip_tags($content), 150);
