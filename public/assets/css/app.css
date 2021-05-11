@@ -291,6 +291,95 @@ ul.pagination li.page-item .page-link {
 #comment-form {
   margin-top: 1rem;
 }
+#profile-login-box {
+  padding: 10rem 0;
+}
+#profile-login-box #login-form {
+  background-color: #fff;
+  padding: 1rem;
+  margin: 0 auto;
+  width: 90%;
+  max-width: 500px;
+}
+#profile-login-box #login-form input {
+  margin-bottom: 1rem;
+}
+#profile-login-box #login-form input[disabled] {
+  background-color: #eeeeee;
+}
+#profile-login-box #login-form .button {
+  min-width: 100%;
+  line-height: 2.75em;
+}
+#profile-box ol#tabs {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  text-align: center;
+  overflow-x: auto;
+  white-space: nowrap;
+  margin: 1rem 0 0;
+}
+#profile-box ol#tabs li {
+  width: 20px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  display: table;
+  padding: 0.4rem 1rem;
+  list-style: none;
+  cursor: pointer;
+  background-color: #cac3c0;
+  color: white;
+}
+#profile-box ol#tabs li.active,
+#profile-box ol#tabs li:hover {
+  background-color: #7e716b;
+}
+#profile-box ol#tabs li:not(:last-child) {
+  margin-right: 0.5rem;
+}
+#profile-box #content {
+  padding: 1em;
+  background-color: white;
+  margin-bottom: 2rem;
+}
+#profile-box #content > div {
+  display: none;
+}
+#profile-box #content table,
+#profile-box #content table th,
+#profile-box #content table td {
+  text-align: left;
+  word-break: break-all;
+}
+#profile-box #content td:first-child {
+  width: 140px;
+}
+#profile-box #content #tab-info table tr {
+  height: 30px;
+  line-height: 30px;
+}
+#profile-box #content #tab-info .switch {
+  vertical-align: middle;
+  height: 25px;
+  width: 45px;
+}
+#profile-box #content #tab-info .switch:before {
+  width: 45px;
+  height: 25px;
+}
+#profile-box #content #tab-info .switch:after {
+  width: 23px;
+  height: 23px;
+}
+#profile-box #content #tab-dateline input {
+  margin-bottom: 0.5rem;
+}
+#profile-box #content #tab-dateline #dateline-submit {
+  width: 100%;
+  margin-top: 1rem;
+}
 .adapro {
   display: flex;
 }
@@ -381,6 +470,55 @@ ul.pagination li.page-item .page-link {
 }
 .cright blockquote p {
   margin: 0 0 5px 0;
+}
+.none {
+  display: none;
+}
+.switch {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  width: 52px;
+  height: 32px;
+  outline: none !important;
+  border-radius: 16px;
+  border: 1px;
+  box-sizing: border-box;
+  background-color: #DFDFDF;
+  transition: background-color 0.1s, border 0.1s;
+}
+.switch::before {
+  content: " ";
+  position: absolute;
+  width: 52px;
+  height: 32px;
+  border: 1px solid #DFDFDF;
+  border-radius: 16px;
+  background-color: #FFFFFF;
+  transition: transform 0.35s cubic-bezier(0.45, 1, 0.4, 1);
+}
+.switch::after {
+  content: " ";
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #FFFFFF;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  transition: transform 0.35s cubic-bezier(0.4, 0.4, 0.25, 1.35);
+}
+.switch:checked {
+  border-color: #1AAD19;
+  background-color: #1AAD19;
+}
+.switch:checked::before {
+  transform: scale(0);
+}
+.switch:checked::after {
+  transform: translateX(20px);
 }
 body#mourning * {
   filter: grayscale(100%);

@@ -81,7 +81,7 @@
                 <input type="hidden" name="foreign_id" value="{{ $data->id }}">
             </form>
         @else
-            <p class="close-comment"><i class="fa fa-lock"></i> 管理员已禁止当前页面的评论！</p>
+            <p class="close-comment"><i class="fa fa-lock"></i> {{ $data instanceof \App\Blog ? '博主' : '管理员' }}已禁止当前页面的评论！</p>
         @endif
     </div>
 

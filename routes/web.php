@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', 'IndexController@index');
 
 // 公告
@@ -29,7 +31,18 @@ Route::get('blog/{id}.html', 'BlogController@blog');
 Route::any('join.html', 'BlogController@join');
 
 // 评论
-Route::post('comment/article', 'CommentController@article');
-Route::post('comment/blog', 'CommentController@blog');
+Route::post('comment/article', 'CommentController@article')->middleware("throttle:40,1");
+Route::post('comment/blog', 'CommentController@blog')->middleware("throttle:40,1");
+
+// Profile
+Route::get('profile/login.html', 'ProfileController@login');
+Route::post('profile/send_code', 'ProfileController@sendCodeMail');
+Route::middleware('auth')->group(function () {
+    Route::post('profile/login.html', 'ProfileController@login')->middleware("throttle:20,1");
+    Route::any('profile.html', 'ProfileController@index');
+    Route::post('profile/dateline/submit', 'ProfileController@submitDateline');
+    Route::post('profile/blog/change', 'ProfileController@blogChange');
+});
+
 
 Route::get('{key?}.html', 'PageController@detail');

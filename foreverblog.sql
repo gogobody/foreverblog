@@ -367,6 +367,7 @@ CREATE TABLE `dateline` (
   `blog_id` int(11) NOT NULL DEFAULT '0' COMMENT '博客ID',
   `date` timestamp NULL DEFAULT NULL COMMENT '时间',
   `content` text COLLATE utf8mb4_unicode_ci COMMENT '内容',
+  `status` tinyint(1) DEFAULT '1' COMMENT '状态,0=审核中,1=审核通过,2=审核不通过',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT '更新时间',
   `created_at` timestamp NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE

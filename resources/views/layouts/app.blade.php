@@ -16,6 +16,7 @@
     <meta name="keywords" content="十年之约,个人博客,博客十年之约,博客收录,博客交流,博客展示,独立博客,记录我们的十年" />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    @yield('head')
     <link rel="stylesheet" href="/assets/css/main.css?ver=20200102" />
     <link rel="stylesheet" href="/assets/css/app.css?ver=202105100554" />
     <noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>

@@ -50,6 +50,7 @@ class DatelineController extends AdminController
         $grid->column('content', __('内容'))->display(function ($content) {
             return Str::limit(strip_tags($content), 150);
         });
+        $grid->column('status', '状态')->editable('select', Dateline::STATUS)->filter(Dateline::STATUS);
         $grid->column('created_at', __('创建时间'))->sortable()->filter('range', 'datetime');
 
         $grid->disableCreateButton();

@@ -2,20 +2,26 @@
 
 namespace App\Http\Middleware;
 
+use App\Blog;
+use Closure;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
 class Authenticate extends Middleware
 {
-    /**
-     * Get the path the user should be redirected to when they are not authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return string
-     */
-    protected function redirectTo($request)
+    public function handle($request, Closure $next, ...$guards)
     {
-        if (! $request->expectsJson()) {
-            return route('login');
+        $email = $request->session()->get('email');
+        if (!$email || !$blog = Blog::query()
+                ->where('email', $email)
+                ->where('status', 1)
+                ->latest()
+                ->first()
+        ) {
+            return redirect(url('/profile/login.html'));
         }
+
+        $request->blog = $blog;
+
+        return $next($request);
     }
 }

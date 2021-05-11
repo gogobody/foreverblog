@@ -8,9 +8,11 @@ class Dateline extends Model
 {
     protected $table = 'dateline';
 
-    protected $fillable = ['blog_id', 'date', 'content'];
+    protected $fillable = ['blog_id', 'date', 'content', 'status'];
 
     protected $appends = ['join_date'];
+
+    const STATUS = ['待审核', '审核通过', '审核不通过'];
 
     public function blog()
     {

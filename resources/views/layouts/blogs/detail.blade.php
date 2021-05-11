@@ -32,9 +32,9 @@
                         @endif
                     </div>
                     <div class="cright">
-                        @if(!$blog->datelines->isEmpty())
+                        @if(!$blog->datelines->where('status', 1)->isEmpty())
                             <h2>大事记</h2>
-                            @foreach($blog->datelines as $dateline)
+                            @foreach($blog->datelines->where('status', 1) as $dateline)
                             <div class="item">
                                 <blockquote><p>{{ $dateline->join_date }}</p></blockquote>
                                 <p>{!! str_replace(["\r\n", PHP_EOL], ['<br/>', '<br/>'], $dateline->content) !!}</p>

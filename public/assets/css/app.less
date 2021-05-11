@@ -227,6 +227,7 @@ ul.pagination {
             padding: .4rem 0;
             list-style: none;
             cursor: pointer;
+
             &.active, &:hover {
                 background-color: #f1f1f1;
             }
@@ -352,6 +353,118 @@ ul.pagination {
     margin-top: 1rem;
 }
 
+// Profile
+#profile-login-box {
+    padding: 10rem 0;
+
+    #login-form {
+        background-color: #fff;
+        padding: 1rem;
+        margin: 0 auto;
+        width: 90%;
+        max-width: 500px;
+
+        input {
+            margin-bottom: 1rem;
+
+            &[disabled] {
+                background-color: #eeeeee;
+            }
+        }
+
+        .button {
+            min-width: 100%;
+            line-height: 2.75em;
+        }
+    }
+}
+
+#profile-box {
+    ol#tabs {
+        display: flex;
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        text-align: center;
+        overflow-x: auto;
+        white-space: nowrap;
+        margin: 1rem 0 0;
+
+        li {
+            width: 20px;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            //flex: 1;
+            display: table;
+            padding: .4rem 1rem;
+            list-style: none;
+            cursor: pointer;
+            background-color: #cac3c0;
+            color: white;
+
+            &.active, &:hover {
+                background-color: #7e716b;
+            }
+
+            &:not(:last-child) {
+                margin-right: .5rem;
+            }
+        }
+    }
+
+    #content {
+        padding: 1em;
+        background-color: white;
+        margin-bottom: 2rem;
+
+        & > div {
+            display: none;
+        }
+
+        table, table th, table td {
+            text-align: left;
+            word-break: break-all;
+        }
+
+        td:first-child {
+            width: 140px;
+        }
+
+        #tab-info {
+            table tr {
+                height: 30px;
+                line-height: 30px;
+            }
+
+            .switch {
+                vertical-align: middle;
+                height: 25px;
+                width: 45px;
+
+                &:before {
+                    width: 45px;
+                    height: 25px;
+                }
+
+                &:after {
+                    width: 23px;
+                    height: 23px;
+                }
+            }
+        }
+
+        #tab-dateline {
+            input {
+                margin-bottom: .5rem;
+            }
+            #dateline-submit {
+                width: 100%;
+                margin-top: 1rem;
+            }
+        }
+    }
+}
+
 // 博客详情页
 .adapro {
     display: flex;
@@ -456,6 +569,63 @@ ul.pagination {
             margin: 0 0 5px 0;
         }
     }
+}
+
+.none {
+    display: none;
+}
+
+// 开关样式
+.switch {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    position: relative;
+    width: 52px;
+    height: 32px;
+    outline: none !important;
+    border-radius: 16px;
+    border: 1px;
+    box-sizing: border-box;
+    background-color: #DFDFDF;
+    transition: background-color .1s, border .1s;
+}
+
+.switch::before {
+    content: " ";
+    position: absolute;
+    width: 52px;
+    height: 32px;
+    border: 1px solid #DFDFDF;
+    border-radius: 16px;
+    background-color: #FFFFFF;
+    transition: transform .35s cubic-bezier(0.45, 1, 0.4, 1);
+}
+
+.switch::after {
+    content: " ";
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #FFFFFF;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    transition: transform .35s cubic-bezier(0.4, 0.4, 0.25, 1.35);
+}
+
+.switch:checked {
+    border-color: #1AAD19;
+    background-color: #1AAD19;
+}
+
+.switch:checked::before {
+    transform: scale(0);
+}
+
+.switch:checked::after {
+    transform: translateX(20px);
 }
 
 body#mourning * {
