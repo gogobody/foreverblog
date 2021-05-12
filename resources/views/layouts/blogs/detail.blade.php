@@ -37,7 +37,7 @@
                             @foreach($blog->datelines->where('status', 1) as $dateline)
                             <div class="item">
                                 <blockquote><p>{{ $dateline->join_date }}</p></blockquote>
-                                <p style="display: none">{{ str_replace(["\r\n", PHP_EOL], ['<br/>', '<br/>'], $dateline->content) }}</p>
+                                <p style="display: none">{{ str_replace(["\r\n", PHP_EOL], ['  ', '  '], $dateline->content) }}</p>
                             </div>
                             @endforeach
                         @else
