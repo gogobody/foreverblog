@@ -26,6 +26,7 @@ Route::get('article/{id}.html', 'ArticleController@article')->defaults('type', '
 // 博客
 Route::any('blogs.html', 'BlogController@blogs');
 Route::get('blog/{id}.html', 'BlogController@blog');
+Route::post('blogs', 'BlogController@items');
 
 // 申请加入
 Route::any('join.html', 'BlogController@join');

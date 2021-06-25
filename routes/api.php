@@ -13,10 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::post('/blogs', 'BlogController@items'); // 博客列表
+use Illuminate\Support\Facades\Route;
 
 Route::get('/inspect', 'TaskController@inspect'); // 自动检测

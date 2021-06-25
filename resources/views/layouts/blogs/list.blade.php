@@ -91,7 +91,7 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: '{{ url('/api/blogs') }}',
+                url: '{{ url('/blogs') }}',
                 type: 'post',
                 data: {page: page, year: $('#tabs li.active').data('year')},
                 dataType: 'json',
