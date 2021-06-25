@@ -18,6 +18,14 @@ class BlogController extends Controller
      */
     public function check(Request $request)
     {
+        $this->validate($request, [
+            'email' => ['required'],
+            'domain' => ['required'],
+        ], [], [
+            'email' => '邮箱',
+            'domain' => '域名',
+        ]);
+
         $domain = rtrim(str_replace(['http://', 'https://'], ['', ''], $request->domain), '/');
         $domainCount = Blog::query()->where('status', 1)->where('link', 'like', "%{$domain}%")->count();
         $emailCount = Blog::query()->where('status', 1)->where('email', $request->email)->count();
