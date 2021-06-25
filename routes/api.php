@@ -14,5 +14,13 @@ use Illuminate\Http\Request;
 */
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\Api\V1\BlogController;
 
-Route::get('/inspect', 'TaskController@inspect'); // 自动检测
+Route::get('/inspect', [TaskController::class, 'inspect']); // 自动检测
+
+Route::prefix('v1')->group(function () {
+    Route::prefix('blog')->group(function () {
+        Route::post('check', [BlogController::class, 'check']);
+    });
+});
