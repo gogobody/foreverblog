@@ -125,7 +125,6 @@ class BlogController extends Controller
         if (empty($blog->adopted_at)) {
             $blog->adopted_at = $blog->created_at;
         }
-        $blog->adopted_at = date('Y-m-d', strtotime($blog->adopted_at));
         return view('layouts.blogs.random', compact('blog'));
     }
 
