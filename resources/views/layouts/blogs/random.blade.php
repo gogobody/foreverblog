@@ -120,12 +120,9 @@
 
     <div class="blink">
         <div class="link">
-            即将去往[{{ $blog['name'] }}]的十年<br/>加入时间为[{{ $blog['adopted_at'] }}],十年之约第[{{ $blog['id'] }}]个博主
+            即将去往[{{ $blog['name'] }}]的十年<br/>加入时间为[{{ $blog['adopted_at'] ? date('Y-m-d', strtotime($blog['adopted_at'])) : '未知' }}]，十年之约第[{{ $blog['id'] }}]个博主
         </div>
     </div>
-
-
-
 
     <div class="botCenter">
         ↩️ Tips: <b>后退</b>网页可再次开往<br />
@@ -133,8 +130,6 @@
     </div>
 
 </div>
-
-
 
 <script>
     window.setTimeout(()=>{location.href="{{ $blog['link'] }}"}, 3000);

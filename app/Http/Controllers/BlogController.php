@@ -121,7 +121,7 @@ class BlogController extends Controller
 
     public function random(Request $request)
     {
-        $blog = Blog::where('status',1)->inRandomOrder()->take(1)->first(['id','name','link','message','adopted_at']);
+        $blog = Blog::where('status', 1)->inRandomOrder()->take(1)->first(['id', 'name', 'link', 'message', 'adopted_at']);
         return view('layouts.blogs.random', compact('blog'));
     }
 
