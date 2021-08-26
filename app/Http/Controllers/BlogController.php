@@ -119,6 +119,12 @@ class BlogController extends Controller
         return view('layouts.blogs.join', compact('closeApply'));
     }
 
+    public function random(Request $request)
+    {
+        $blog = Blog::where('status',1)->inRandomOrder()->take(1)->first(['id','name','link','message','adopted_at']);
+        return view('layouts.blogs.random', compact('blog'));
+    }
+
     private function getBlogYears(): array
     {
         return Blog::query()->orderBy('created_at')->pluck('created_at')->transform(function ($at) {
