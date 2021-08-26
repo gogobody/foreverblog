@@ -7,11 +7,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 </head>
 <body>
-<p>{{ $id }}->{{ $name }}->{{ $link }}->{{ $message }}->{{ $adopted_at }}</p>
+<p>{{ $blog['id'] }}->{{ $blog['name'] }}->{{ $blog['link'] }}->{{ $blog['message'] }}->{{ $blog['adopted_at'] }}</p>
 
 <script>
     setTimeout(() => {
-        location.href = "{{ $link }}";
+        location.href = "{{ $blog['link'] }}";
     }, 3000)
 </script>
 </body>
