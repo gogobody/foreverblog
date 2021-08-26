@@ -31,6 +31,9 @@ Route::post('blogs', 'BlogController@items');
 // 申请加入
 Route::any('join.html', 'BlogController@join');
 
+// 随机跳转
+Route::any('go.html', 'BlogController@random');
+
 // 评论
 Route::post('comment/article', 'CommentController@article')->middleware("throttle:40,1");
 Route::post('comment/blog', 'CommentController@blog')->middleware("throttle:40,1");
