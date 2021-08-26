@@ -8,9 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--    预加载提高访问速度-->
     <meta http-equiv='x-dns-prefetch-control' content='on'>
-    <link rel='dns-prefetch' href="{{ $blog['link'] }}">
-    <link rel="prefetch" href="{{ $blog['link'] }}"/>
-    <link rel="next" href="{{ $blog['link'] }}">
+    <link rel='dns-prefetch' href="{{ $blog->link }}">
+    <link rel="prefetch" href="{{ $blog->link }}"/>
+    <link rel="next" href="{{ $blog->link }}">
     <title>虫洞-随机访问十年之约成员博客</title>
     <style>
 
@@ -115,9 +115,10 @@
 
     <div class="blink">
         <div class="link">
-            <p>即将奔赴[{{ $blog['name'] }}]的十年</p>
-            <p>加入时间[{{ date('Y-m-d', strtotime($blog['adopted_at'])) }}]</p>
-            <p>博主寄语[{{ $blog['message'] }}]</p>
+            <p>即将奔赴 <b>{{ $blog->name }}</b> 的十年</p>
+            <p>加入时间 {{ $blog->adopted_at->format('Y-m-d') }}</p>
+            <p>博主寄语 </p>
+            <i>{{ $blog->message }}</i>
         </div>
     </div>
 
@@ -137,8 +138,8 @@
 
 <script>
 
-    window.setTimeout(()=>{
-        window.location = "{{ $blog['link'] }}"
+    window.setTimeout(function () {
+        window.location = "{{ $blog->link }}"
     }, 4000);
 
     var _hmt = _hmt || [];
