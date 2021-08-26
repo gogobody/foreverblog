@@ -44,32 +44,26 @@
 
         @keyframes blink {
             0% {
-                opacity: 0;
                 transform: scale(1);
             }
 
             20% {
-                opacity: 0;
                 transform: scale(1);
             }
 
             40% {
-                opacity: 0.3;
                 transform: scale(1);
             }
 
             80% {
-                opacity: 1;
                 transform: scale(0.98);
             }
 
             90% {
-                opacity: 1;
                 transform: scale(0.98);
             }
 
             100% {
-                opacity: 0.2;
                 transform: scale(1.2);
             }
         }
@@ -143,12 +137,9 @@
 
 <script>
 
-    function go() {
-        window.location = "http://www.baidu.com"
-    }
-
-    //{{ $blog['link'] }}
-    window.setTimeout("window.location.href='javascript:go()'", 5000);
+    window.setTimeout(()=>{
+        window.location = "{{ $blog['link'] }}"
+    }, 4000);
 
     var _hmt = _hmt || [];
     (function () {
@@ -161,5 +152,3 @@
 
 </body>
 </html>
-
-
