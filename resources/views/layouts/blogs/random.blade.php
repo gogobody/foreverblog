@@ -9,19 +9,19 @@
     <!--    预加载提高访问速度-->
     <meta http-equiv='x-dns-prefetch-control' content='on'>
     <link rel='dns-prefetch' href="{{ $blog['link'] }}">
-    <link rel="prefetch" href="{{ $blog['link'] }}" />
+    <link rel="prefetch" href="{{ $blog['link'] }}"/>
     <link rel="next" href="{{ $blog['link'] }}">
-
-    <title>十年之约</title>
+    <title>虫洞-随机访问十年之约成员博客</title>
     <style>
 
         * {
             color: #111827;
         }
 
-        body{
+        body {
             background-color: #ECF0F5;
         }
+
         a {
             text-decoration: none;
         }
@@ -78,7 +78,7 @@
             position: fixed;
             width: 100%;
             height: 50px;
-            bottom: 2px;
+            bottom: 20px;
             line-height: 20px;
             font-size: 12px;
             text-align: center;
@@ -88,6 +88,7 @@
             -ms-animation: botCenter 3s linear;
             -o-animation: botCenter 3s linear;
         }
+
         @keyframes botCenter {
             0% {
                 opacity: 0;
@@ -120,19 +121,42 @@
 
     <div class="blink">
         <div class="link">
-            即将去往[{{ $blog['name'] }}]的十年<br/>加入时间为[{{ date('Y-m-d', strtotime($blog['adopted_at'])) }}]，十年之约第[{{ $blog['id'] }}]个博主
+            <p>即将奔赴[{{ $blog['name'] }}]的十年</p>
+            <p>加入时间[{{ date('Y-m-d', strtotime($blog['adopted_at'])) }}]</p>
+            <p>博主寄语[{{ $blog['message'] }}]</p>
         </div>
     </div>
 
+
     <div class="botCenter">
-        ↩️ Tips: <b>后退</b>网页可再次开往<br />
-        <a href="https://www.foreverblog.cn/" target="_blank">foreverblog 十年之约</a>
+        Tips: <b>后退</b>网页即可再次穿梭<b>虫洞</b><br/>
+        <a href="https://www.foreverblog.cn/" target="_blank">
+            <img src="https://img.foreverblog.cn/logo_en_default.png" alt="" style="width:auto;height:16px;">
+        </a>
+        <div class="time">2017-
+            <script>document.write((new Date()).getFullYear())</script>
+        </div>
     </div>
 
 </div>
 
+
 <script>
-    window.setTimeout(()=>{location.href="{{ $blog['link'] }}"}, 3000);
+
+    function go() {
+        window.location = "http://www.baidu.com"
+    }
+
+    //{{ $blog['link'] }}
+    window.setTimeout("window.location.href='javascript:go()'", 5000);
+
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0c7836ac8678d921d1d4ad74e6affa81";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
 </script>
 
 </body>
