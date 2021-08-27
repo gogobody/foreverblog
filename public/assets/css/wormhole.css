@@ -53,11 +53,12 @@ a {
 }
 .container #content .meta #message {
   margin: auto;
-  width: 90%;
+  text-align: center;
+  padding: 1rem 10rem;
 }
 .container #content .meta #message .message-left,
 .container #content .meta #message .message-right {
-  font-size: 25px;
+  font-size: 17px;
   color: white;
 }
 .container #content .meta #message .text {
@@ -77,5 +78,10 @@ a {
   margin-top: 0.5em;
   width: auto;
   height: 16px;
+}
+@media screen and (max-width: 769px) {
+  .container #content .meta #message {
+    padding: 1.5rem;
+  }
 }
 /*# sourceMappingURL=wormhole.css.map */

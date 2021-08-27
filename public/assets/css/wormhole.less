@@ -63,9 +63,10 @@ a {
             }
             #message {
                 margin: auto;
-                width: 90%;
+                text-align: center;
+                padding: 1rem 10rem;
                 .message-left, .message-right {
-                    font-size: 25px;
+                    font-size: 17px;
                     color: white;
                 }
                 .text {
@@ -88,6 +89,18 @@ a {
                 margin-top: .5em;
                 width: auto;
                 height: 16px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 769px) {
+    .container {
+        #content {
+            .meta {
+                #message {
+                    padding: 1.5rem;
+                }
             }
         }
     }
