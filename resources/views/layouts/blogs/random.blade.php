@@ -198,7 +198,7 @@
         type: 'post',
         dataType: 'json',
         data: {
-            // filter: filter,
+            filter: filter,
             _token: $('[name="csrf-token"]').attr('content'),
         },
         success: function (response) {
