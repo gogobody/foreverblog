@@ -186,9 +186,9 @@
 </script>
 <script>
     function randomRgbaColor() {
-        var r = Math.floor(Math.random() * 256);
-        var g = Math.floor(Math.random() * 256);
-        var b = Math.floor(Math.random() * 256);
+        var r = Math.floor(Math.random() * (255 - 50 + 1) + 50);
+        var g = Math.floor(Math.random() * (255 - 50 + 1) + 50);
+        var b = Math.floor(Math.random() * (255 - 50 + 1) + 50);
         return 'rgb(' + r +', ' + g + ', ' + b + ', .95)';
     }
 
@@ -198,7 +198,7 @@
         type: 'post',
         dataType: 'json',
         data: {
-            filter: filter,
+            // filter: filter,
             _token: $('[name="csrf-token"]').attr('content'),
         },
         success: function (response) {
@@ -211,7 +211,7 @@
                 $('#message .text').css('color', randomRgbaColor()).text(blog.message);
                 $('#content').fadeIn().css('display', 'flex');
                 setTimeout(function () {
-                    window.location = blog.link;
+                    // window.location = blog.link;
                 }, 4000);
             } else {
                 alert(response.message)
