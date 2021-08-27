@@ -48,6 +48,9 @@ a {
   width: 70%;
   object-fit: cover;
 }
+.container #content .meta #time {
+  color: #d7d7d7;
+}
 .container #content .meta #message {
   margin: auto;
   width: 90%;
@@ -56,6 +59,10 @@ a {
 .container #content .meta #message .message-right {
   font-size: 25px;
   color: white;
+}
+.container #content .meta #message .text {
+  text-shadow: 2px 2px 2px #3e3e3e;
+  font-style: italic;
 }
 .container #content .footer {
   position: absolute;

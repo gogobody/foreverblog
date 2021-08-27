@@ -185,6 +185,13 @@
     });
 </script>
 <script>
+    function randomRgbaColor() {
+        var r = Math.floor(Math.random() * 256);
+        var g = Math.floor(Math.random() * 256);
+        var b = Math.floor(Math.random() * 256);
+        return 'rgb(' + r +', ' + g + ', ' + b + ', .95)';
+    }
+
     var filter = JSON.parse(sessionStorage.getItem('filter') || '[]');
     $.ajax({
         url: '',
@@ -201,7 +208,7 @@
                 sessionStorage.setItem('filter', JSON.stringify(filter));
                 $('#name').text(blog.name);
                 $('#time').text(blog.adopted_at);
-                $('#message .text').text(blog.message);
+                $('#message .text').css('color', randomRgbaColor()).text(blog.message);
                 $('#content').fadeIn().css('display', 'flex');
                 setTimeout(function () {
                     window.location = blog.link;
