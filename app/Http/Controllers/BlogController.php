@@ -121,11 +121,19 @@ class BlogController extends Controller
 
     public function random(Request $request)
     {
-        $blog = Blog::where('status', 1)->inRandomOrder()->take(1)->first(['id', 'name', 'link', 'message', 'adopted_at', 'created_at']);
-        if (empty($blog->adopted_at)) {
-            $blog->adopted_at = $blog->created_at;
+        if ($request->isMethod('post')) {
+            $filter = $request->post('filter') ?: [];
+            if (!$blog = Blog::query()->orderByRaw("RAND()")->where('status', 1)->whereNotIn('id', $filter)->first([
+                'id', 'name', 'link', 'message', 'adopted_at', 'created_at'
+            ])) {
+                return $this->error('没有更多的博客啦！');
+            }
+            if (empty($blog->adopted_at)) {
+                $blog->adopted_at = $blog->created_at;
+            }
+            return $this->success('success', compact('blog'));
         }
-        return view('layouts.blogs.random', compact('blog'));
+        return view('layouts.blogs.random');
     }
 
     private function getBlogYears(): array
