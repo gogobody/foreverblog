@@ -211,7 +211,7 @@
                 $('#message .text').css('color', randomRgbaColor()).text(blog.message);
                 $('#content').fadeIn().css('display', 'flex');
                 setTimeout(function () {
-                    // window.location = blog.link;
+                    window.location = blog.link;
                 }, 4000);
             } else {
                 alert(response.message)
