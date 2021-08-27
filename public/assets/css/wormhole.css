@@ -52,6 +52,11 @@ a {
   margin: auto;
   width: 90%;
 }
+.container #content .meta #message .message-left,
+.container #content .meta #message .message-right {
+  font-size: 25px;
+  color: white;
+}
 .container #content .footer {
   position: absolute;
   left: 0;

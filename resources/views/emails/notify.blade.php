@@ -27,7 +27,10 @@
             时间：<span>{{ date('Y-m-d H:i:s') }}</span>
         </p>
         <p class="detail-content">{!! $content !!}</p>
-        <p class="info">十年之约项目组 admin@foreverblog.cn</p>
+        <p class="info">
+            <p>欢迎通过虫洞穿梭十年之约：<a href="https://foreverblog.cn/go.html" target="_blank" rel="noopener">https://foreverblog.cn/go.html</a></p>
+            十年之约项目组 admin@foreverblog.cn
+        </p>
     </div>
 </main>
 </body>

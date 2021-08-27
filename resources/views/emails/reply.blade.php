@@ -39,6 +39,7 @@
                 查看回复的完整內容</a>。<br>
             本邮件为自动发送，请勿直接回复，如有疑问，请联系
             <a href="mailto:admin@foreverblog.cn" target="_blank" rel="noopener">admin@foreverblog.cn</a>，
+            <p>欢迎通过虫洞穿梭十年之约：<a href="https://foreverblog.cn/go.html" target="_blank" rel="noopener">https://foreverblog.cn/go.html</a></p>
         </p>
     </div>
 </main>

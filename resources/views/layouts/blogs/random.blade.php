@@ -20,7 +20,11 @@
         <div class="meta">
             <p>加入时间: <span id="time"></span></p>
             <p>博主寄语</p>
-            <p id="message"></p>
+            <p id="message">
+                <span class="message-left">“</span>
+                <span class="text"></span>
+                <span class="message-right">”</span>
+            </p>
         </div>
         <div class="footer">
             Tips: <b>后退</b>网页即可再次穿梭<b>虫洞</b><br/>
@@ -197,7 +201,7 @@
                 sessionStorage.setItem('filter', JSON.stringify(filter));
                 $('#name').text(blog.name);
                 $('#time').text(blog.adopted_at);
-                $('#message').text(blog.message);
+                $('#message .text').text(blog.message);
                 $('#content').fadeIn().css('display', 'flex');
                 setTimeout(function () {
                     window.location = blog.link;
