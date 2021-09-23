@@ -5,24 +5,11 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-        <link rel="stylesheet" type="text/css"
-              href="http://rss.foreverblog.cn/wp-content/themes/wex-next/css/font-css/current.css"/>
-        <link rel="stylesheet" type="text/css" href="http://rss.foreverblog.cn/wp-content/themes/wex-next/css/1.css"/>
-        <link rel="stylesheet" type="text/css"
-              href="http://rss.foreverblog.cn/wp-content/themes/wex-next/css/jquery.fancybox.css"/>
-        <link rel="stylesheet" type="text/css"
-              href="http://rss.foreverblog.cn/wp-content/themes/wex-next/css/font-awesome.min.css"/>
-        <link rel="stylesheet" type="text/css" href="http://rss.foreverblog.cn/wp-content/themes/wex-next/style.css"/>
+        <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
+        <link rel='stylesheet' href='/assets/css/feed.css' type='text/css' media='all'/>
         <script class="class" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
         <script type="text/javascript"> var CONFIG = {motion: true, sidebar: 'post'};</script>
         <title>十年之约——专题展示 | 一个人的寂寞，一群人的狂欢。</title>
-
-
-        <link rel='dns-prefetch' href='//s.w.org'/>
-        <link rel='stylesheet' id='wp-block-library-css'
-              href='http://rss.foreverblog.cn/wp-includes/css/dist/block-library/style.min.css?ver=5.3.8'
-              type='text/css' media='all'/>
-
     </head>
 <body>
 <div class="container one-column page-home">
@@ -222,18 +209,8 @@
                     <nav class="site-state motion-element">
                         <div class="site-state-item site-state-posts">
                                 <span class="site-state-item-count">
-                                    11899                                </span>
-                            <span class="site-state-item-name">日志</span>
-                        </div>
-                        <div class="site-state-item site-state-categories">
-                                <span class="site-state-item-count">
-                                    10775                                </span>
-                            <span class="site-state-item-name">分类</span>
-                        </div>
-                        <div class="site-state-item site-state-tags">
-                                <span class="site-state-item-count">
-                                    210                                </span>
-                            <span class="site-state-item-name">标签</span>
+                                    {{ $total_blog }}                                </span>
+                            <span class="site-state-item-name">博客总数</span>
                         </div>
                     </nav>
 
@@ -268,18 +245,10 @@
     </footer>
     <div class="back-to-top"></div>
 </div>
-<script type="text/javascript"
-        src="http://rss.foreverblog.cn/wp-content/themes/wex-next/js/jquery.fancybox.pack.js"></script>
-<script type="text/javascript" src="http://rss.foreverblog.cn/wp-content/themes/wex-next/js/fancy-box.js"></script>
-<script type="text/javascript" src="http://rss.foreverblog.cn/wp-content/themes/wex-next/js/helpers.js"></script>
-<script type="text/javascript" src="http://rss.foreverblog.cn/wp-content/themes/wex-next/js/velocity.min.js"></script>
-<script type="text/javascript"
-        src="http://rss.foreverblog.cn/wp-content/themes/wex-next/js/velocity.ui.min.js"></script>
-<script type="text/javascript" src="http://rss.foreverblog.cn/wp-content/themes/wex-next/js/motion.js"
-        id="motion.global"></script>
-<script type="text/javascript" src="http://rss.foreverblog.cn/wp-content/themes/wex-next/js/fastclick.min.js"></script>
-<script type="text/javascript" src="http://rss.foreverblog.cn/wp-content/themes/wex-next/js/lazyload.js"></script>
-<script type="text/javascript" src="http://rss.foreverblog.cn/wp-content/themes/wex-next/js/bootstrap.js"></script>
+<script crossorigin="anonymous" integrity="sha384-7j+H85qDApQPyKm8wg64JdGgKmzM7trE+amLzYcJLfwR7rixgAeIi1kSX2VHeje4" src="//lib.baomitu.com/velocity/1.2.2/velocity.min.js"></script>
+<script crossorigin="anonymous" integrity="sha384-ygLIhCkN7QklBUtiFBKpkFIa6x1D0+EM32PXnPzrqv1cNI8h2AqvQgYrMfIBVv6v" src="//lib.baomitu.com/velocity/1.2.2/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/assets/js/feed.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
 
 </body>
 

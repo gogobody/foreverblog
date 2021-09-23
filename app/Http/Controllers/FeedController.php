@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 
 class FeedController extends Controller
 {
+    protected $total_blog;
+    public function __construct()
+    {
+        $this->total_blog = Blog::query()->where('status',1)->count();
+    }
+
     //
     public function feeds(Request $request)
     {
@@ -19,8 +25,8 @@ class FeedController extends Controller
         }else{
             $feeds = Feed::query()->orderBy('created_at', 'desc')->paginate();
         }
-
-        return view('layouts.feeds.list', compact('feeds','s'));
+        $total_blog = $this->total_blog;
+        return view('layouts.feeds.list', compact('feeds','s','total_blog'));
     }
 
     public function nofeeds(Request $request)
@@ -32,6 +38,7 @@ class FeedController extends Controller
         }else{
             $blogs = Blog::query()->where('status', 1)->whereNull('feed_link')->paginate();
         }
-        return view('layouts.feeds.nofeeds', compact('blogs','s'));
+        $total_blog = $this->total_blog;
+        return view('layouts.feeds.nofeeds', compact('blogs','s','total_blog'));
     }
 }
