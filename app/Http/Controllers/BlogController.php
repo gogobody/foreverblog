@@ -79,19 +79,10 @@ class BlogController extends Controller
                     $link = $postData['link'] = 'http://'.$link;
                 }
             }
-            if(!empty($feed_link)){
+            if($feed_link){
                 if(!preg_match("/^http(s)?:\\/\\/.+/", $feed_link)) {
                     // 补上协议头
                     $feed_link = $postData['feed_link'] = 'http://'.$feed_link;
-                }
-                $validator = Validator::make($postData, [
-                    'feed_link' => 'url|max:80',
-                ],[
-                    'feed_link.url' => 'feed 地址格式不正确',
-                    'feed_link.max' => 'feed 地址过长, 最大 50 个字符',
-                ]);
-                if ($validator->fails()) {
-                    return ['code' => 0, 'message' => $validator->errors()->first()];
                 }
                 $parse = parse_url($feed_link);
                 if ($parse && isset($parse['host'])) {
@@ -109,12 +100,15 @@ class BlogController extends Controller
                 'name' => 'required|min:2|max:20',
                 'email' => 'required|email',
                 'link' => 'required|url|max:50',
+                'feed_link' => 'url|max:80',
                 'message' => 'required|min:2|max:300',
                 'captcha' => 'required|captcha'
             ], [
                 'link.required' => '网站地址不能为空',
                 'link.url' => '网站地址格式不正确',
+                'feed_link.url' => 'feed 地址格式不正确',
                 'link.max' => '网站地址过长, 最大 50 个字符',
+                'feed_link.max' => 'feed 地址过长, 最大 80 个字符',
                 'message.required' => '博主寄语不能为空',
                 'message.min' => '博主寄语字符必须大于 2',
                 'message.max' => '博主寄语字符必须小于 300',

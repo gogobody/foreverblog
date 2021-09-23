@@ -74,6 +74,8 @@ class FetchRss extends Command
                         if(!Blog::find($blog->id)->feeds()->saveMany($data)){
                             DB::rollBack();
                         }
+                    }else{
+                        print_r("fetch rss ".$blog->feed_link." failed:",$feed->error);
                     }
 
                 }
