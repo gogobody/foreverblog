@@ -28,6 +28,11 @@ Route::any('blogs.html', 'BlogController@blogs');
 Route::get('blog/{id}.html', 'BlogController@blog');
 Route::post('blogs', 'BlogController@items');
 
+// RSS
+Route::any('feeds.html', 'FeedController@feeds');
+Route::any('no-rss-list.html', 'FeedController@nofeeds');
+
+
 // 申请加入
 Route::any('join.html', 'BlogController@join');
 

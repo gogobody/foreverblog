@@ -68,6 +68,8 @@ class BlogController extends Controller
 
             $email = $request->input('email');
             $link = $request->input('link');
+            $feed_link = $request->input('feed_link');
+
             /*if (Blog::where('email', $email)->where('status', '<>', 2)->count()) {
                 return ['code' => 0, 'message' => '检测到系统已存在该邮箱, 同一个邮箱只允许申请一次!'];
             }*/
@@ -77,7 +79,32 @@ class BlogController extends Controller
                     $link = $postData['link'] = 'http://'.$link;
                 }
             }
-
+            if(!empty($feed_link)){
+                if(!preg_match("/^http(s)?:\\/\\/.+/", $feed_link)) {
+                    // 补上协议头
+                    $feed_link = $postData['feed_link'] = 'http://'.$feed_link;
+                }
+                $validator = Validator::make($postData, [
+                    'feed_link' => 'url|max:80',
+                ],[
+                    'feed_link.url' => 'feed 地址格式不正确',
+                    'feed_link.max' => 'feed 地址过长, 最大 50 个字符',
+                ]);
+                if ($validator->fails()) {
+                    return ['code' => 0, 'message' => $validator->errors()->first()];
+                }
+                $parse = parse_url($feed_link);
+                if ($parse && isset($parse['host'])) {
+                    $host = $parse['host'];
+                    if (Blog::where('feed_link', 'like', "%{$host}%")
+                        ->where('email', $email)
+                        ->where('status', '<>', 2)
+                        ->count()
+                    ) {
+                        return ['code' => 0, 'message' => "您申请的博客 feed 链接 {$host} 已存在，请勿重复申请！"];
+                    }
+                }
+            }
             $validator = Validator::make($postData, [
                 'name' => 'required|min:2|max:20',
                 'email' => 'required|email',
@@ -108,6 +135,7 @@ class BlogController extends Controller
                     return ['code' => 0, 'message' => "您申请的博客 {$host} 已存在，请勿重复申请！"];
                 }
             }
+
             $data = $validator->validated();
             $data['status'] = 0;
             if (!Blog::create($data)) {

@@ -300,11 +300,29 @@ CREATE TABLE `blog` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT COMMENT='博客表';
 
+ALTER TABLE `blog` ADD COLUMN `feed_link` varchar(255) NULL COMMENT 'rss地址' after `link`;
+
 -- ----------------------------
 -- Records of blog
 -- ----------------------------
 BEGIN;
 COMMIT;
+
+-- ----------------------------
+-- Table structure for feed
+-- ----------------------------
+DROP TABLE IF EXISTS `feed`;
+CREATE TABLE `feed` (
+    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+    `blog_id` int(11) NOT NULL DEFAULT '0' COMMENT '外键ID',
+    `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '标题',
+    `author` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '作者',
+    `link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '链接',
+    `desc` text COLLATE utf8mb4_unicode_ci COMMENT '描述',
+    `created_at` timestamp NULL DEFAULT NULL,
+    `updated_at` timestamp NULL DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Table structure for comment

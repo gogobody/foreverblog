@@ -68,6 +68,7 @@ class BlogController extends AdminController
         });
         $grid->column('email', __('邮箱'));
         $grid->column('link', __('链接地址'))->link()->copyable();
+        $grid->column('feed_link', __('feed地址'))->editable()->copyable();
         $grid->column('slug', __('Slug'))->editable();
         $grid->column('message', __('寄语'))->limit(40);
         $grid->column('views', __('阅读量'))->sortable();
@@ -97,6 +98,7 @@ class BlogController extends AdminController
         $show->field('id', __('ID'));
         $show->field('name', __('博客名称'));
         $show->field('link', __('网址'))->link();
+        $show->field('feed_link', __('feed地址'))->link();
         $show->field('email', __('邮箱'));
         $show->field('message', __('寄语'));
         $show->field('status', __('状态'))
@@ -130,6 +132,7 @@ class BlogController extends AdminController
             ->creationRules(['required', "unique:blog"])
             ->updateRules(['required']);
         $form->url('link', __('链接地址'))->rules('required|url');
+        $form->url('feed_link', __('feed地址'))->rules('url');
         $form->text('slug', __('Slug'))
             ->creationRules([
                 'nullable',
