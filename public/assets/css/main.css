@@ -2849,7 +2849,14 @@ body.index #main {
 #navPanel, #navButton {
     display: none;
 }
-
+.button-new{
+    width: fit-content;
+    padding: 0 7px;
+    margin: 0;
+    min-width: auto;
+    font-size: 14px;
+    line-height: 23px;
+}
 @media screen and (max-width: 840px) {
 
     /* Basic */

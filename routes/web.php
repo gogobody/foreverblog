@@ -50,6 +50,7 @@ Route::post('profile/send_code', 'ProfileController@sendCodeMail');
 Route::middleware('auth')->group(function () {
     Route::any('profile.html', 'ProfileController@index');
     Route::post('profile/dateline/submit', 'ProfileController@submitDateline');
+    Route::post('profile/feedlink/submit', 'ProfileController@submitFeedlink');
     Route::post('profile/blog/change', 'ProfileController@blogChange');
 });
 

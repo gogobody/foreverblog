@@ -31,6 +31,13 @@
                             <td><a href="{{ $blog->link }}" target="_blank">{{ $blog->link }}</a></td>
                         </tr>
                         <tr>
+                            <td>Feed地址</td>
+                            <td>
+                                <span id="feedlink">{{ $blog->feed_link }}</span>
+                                <button id="changFeed" class="button-new">修改</button>
+                            </td>
+                        </tr>
+                        <tr>
                             <td>URL Slug</td>
                             <td>{!! $blog->slug ? url('/blog', '', true) . "/<b>{$blog->slug}</b>.html" : '-' !!}</td>
                         </tr>
@@ -91,6 +98,52 @@
         $('#content>div').hide();
         $('#tab-' + $(this).data('tab')).show();
     });
+    document.getElementById("changFeed").onclick = function(){
+        // 调用插件
+        $("#pop_tip_input").val($('#feedlink').text());
+        poplayer.prompt1('跳转携带输入参数','确定','取消','请输入feed地址，带(http/https)',true,function(data){
+            $.ajax({
+                url: data,
+                type: 'GET',
+                error:function (res){
+                    poplayer.msg('访问地址出错',2);
+                },
+                complete: function(response){
+                    if(response.status === 200){
+                        //
+                        $.ajax({
+                            url: "{{ url('/profile/feedlink/submit') }}",
+                            type: "post",
+                            data: {
+                                feed_link: data,
+                                _token: $('[name="csrf-token"]').attr('content'),
+                            },
+                            dataType: "json",
+                            success: function (response) {
+                                alert(response.message)
+                                if (response.code) {
+                                    $('#feedlink').text(data)
+                                }
+                                document.body.removeChild(document.getElementById("pop_tip")); // 关闭上一个弹层
+                            },
+                            error: function (error) {
+                                alert('服务异常, 请稍后重试')
+                            },
+                            complete: function () {
+                                loading = false;
+                            }
+                        });
+                    }else{
+                        alert('地址无法访问')
+                        document.body.removeChild(document.getElementById("pop_tip"));
+                        poplayer.msg('地址无法访问',2);
+                    }
+                },
+
+            });
+
+        });
+    };
     $('#dateline-submit').click(function () {
         if (loading) return;
         $(this).text('请稍等...')

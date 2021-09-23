@@ -6,6 +6,7 @@ use App\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class ProfileController extends Controller
@@ -72,6 +73,34 @@ class ProfileController extends Controller
         return $this->success('提交成功，审核通过后将会展示在博客详情页。');
     }
 
+    /**
+     * 提交 feed 地址
+     *
+     */
+    public function submitFeedlink(Request $request)
+    {
+        $blog = $request->blog;
+        $feed_link = $request->input('feed_link');
+        if(!$feed_link) $this->error('没有 feed link');
+        $postData = [
+            'feed_link' => $feed_link
+        ];
+        $validator = Validator::make($postData, [
+            'feed_link' => 'required|url|max:80',
+        ], [
+            'feed_link.required' => 'feed 地址不能为空',
+            'feed_link.url' => 'feed 地址格式不正确',
+        ]);
+        if ($validator->fails()) {
+            return ['code' => 0, 'message' => $validator->errors()->first()];
+        }
+        $postData = $validator->validated();
+        $blog->feed_link = $postData['feed_link'];
+        $blog->feed_status = 3;
+        $blog->save();
+        return $this->success('修改成功。');
+
+    }
     /**
      * 发送登录验证码
      * @param  Request  $request
