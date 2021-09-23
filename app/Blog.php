@@ -12,9 +12,11 @@ class Blog extends Model
 
     protected $appends = ['avatar'];
 
-    protected $fillable = ['name', 'email', 'link', 'feed_link', 'message', 'status', 'history', 'views', 'adopted_at', 'updated_at', 'created_at'];
+    protected $fillable = ['name', 'email', 'link', 'feed_link', 'feed_status', 'message', 'status', 'history', 'views', 'adopted_at', 'updated_at', 'created_at'];
 
     const STATUS = ['审核中', '审核通过', '未通过', '疑似异常', '异常'];
+
+    const FEED_STATUS = ['未填写', '正常', '抓取异常', '未检测'];
 
     const IS_NOTIFY = ['否', '是'];
 
@@ -55,12 +57,12 @@ class Blog extends Model
 
     public function feeds($page = 5)
     {
-        return $this->hasMany(Feed::class,'blog_id','id');
+        return $this->hasMany(Feed::class, 'blog_id', 'id');
     }
 
     public function feedsource($page = 5)
     {
-        return $this->hasMany(Feed::class,'blog_id','id')
+        return $this->hasMany(Feed::class, 'blog_id', 'id')
             ->orderBy('created_at', 'desc')->get();
     }
 

@@ -32,6 +32,13 @@
                         @endif
                     </div>
                     <div class="cright">
+                        @if($feed)
+                            <h2>最新文章</h2>
+                            <div class="item">
+                                <blockquote><p>{{ $feed->title }}</p></blockquote>
+                                <p style="display: none">{{ str_replace(["\r\n", PHP_EOL], ['  ', '  '], $feed->desc) }}</p>
+                            </div>
+                        @endif
                         @if(!$blog->datelines->where('status', 1)->isEmpty())
                             <h2>大事记</h2>
                             @foreach($blog->datelines->where('status', 1) as $dateline)

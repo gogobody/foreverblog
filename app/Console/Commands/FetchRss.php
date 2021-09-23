@@ -74,8 +74,15 @@ class FetchRss extends Command
                         if(!Blog::find($blog->id)->feeds()->saveMany($data)){
                             DB::rollBack();
                         }
+                        // 修改博客 feed 状态
+                        if(!Blog::find($blog->id)->update(['feed_status'=>1])){
+                            DB::rollBack();
+                        }
                     }else{
                         print_r("fetch rss ".$blog->feed_link." failed:",$feed->error);
+                        if(!Blog::find($blog->id)->update(['feed_status'=>2])){
+                            DB::rollBack();
+                        }
                     }
 
                 }

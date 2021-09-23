@@ -69,6 +69,7 @@ class BlogController extends AdminController
         $grid->column('email', __('邮箱'));
         $grid->column('link', __('链接地址'))->link()->copyable();
         $grid->column('feed_link', __('feed地址'))->editable()->copyable();
+        $grid->column('feed_status', __('feed状态'))->filter(Blog::FEED_STATUS)->editable('select', Blog::FEED_STATUS);
         $grid->column('slug', __('Slug'))->editable();
         $grid->column('message', __('寄语'))->limit(40);
         $grid->column('views', __('阅读量'))->sortable();
@@ -99,6 +100,8 @@ class BlogController extends AdminController
         $show->field('name', __('博客名称'));
         $show->field('link', __('网址'))->link();
         $show->field('feed_link', __('feed地址'))->link();
+        $show->field('feed_status', __('feed状态'))
+            ->using([0 => '未填写', 1 => '正常', 2 => '抓取异常'])->label();
         $show->field('email', __('邮箱'));
         $show->field('message', __('寄语'));
         $show->field('status', __('状态'))
@@ -133,6 +136,7 @@ class BlogController extends AdminController
             ->updateRules(['required']);
         $form->url('link', __('链接地址'))->rules('required|url');
         $form->url('feed_link', __('feed地址'))->rules('url');
+        $form->radio('feed_status', __('feed状态'))->options(Blog::FEED_STATUS)->default(0);
         $form->text('slug', __('Slug'))
             ->creationRules([
                 'nullable',

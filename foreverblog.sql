@@ -301,6 +301,7 @@ CREATE TABLE `blog` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT COMMENT='博客表';
 
 ALTER TABLE `blog` ADD COLUMN `feed_link` varchar(255) NULL COMMENT 'rss地址' after `link`;
+ALTER TABLE `blog` ADD COLUMN `feed_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态值:0=未填写,1=正常,2=抓取异常,3=未检测';
 
 -- ----------------------------
 -- Records of blog
