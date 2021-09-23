@@ -36,7 +36,7 @@
                     <ul>
                         <li><a href="{{ url('/notices.html') }}">公告</a></li>
                         <li><a href="{{ url('/articles.html') }}">文章</a></li>
-                        <li><a href="http://rss.foreverblog.cn/" target="_blank">动态</a></li>
+                        <li><a href="{{ url('/feeds.html') }}" target="_blank">动态</a></li>
                         <li><a href="{{ url('/blogs.html') }}">成员</a></li>
                         <li><a href="{{ url('/profile.html') }}">申报</a></li>
                         <li><a href="{{ url('/message.html') }}">留言</a></li>
