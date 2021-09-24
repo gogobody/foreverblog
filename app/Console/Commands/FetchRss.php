@@ -47,42 +47,50 @@ class FetchRss extends Command
      */
     public function handle()
     {
-        try {
-            Blog::query()->where('status', 1)->with('feeds')->whereNotNull('feed_link')->chunk(10, function ($blogs) {
+        $s = $f = 0;
+        Blog::query()
+            ->where('status', 1)
+            ->with('feeds')
+            ->whereNotNull('feed_link')
+            ->chunk(10, function ($blogs) use (&$s, &$f) {
                 /** @var Blog $blog */
                 foreach ($blogs as $blog) {
-                    $feed = new SimplePie();
-                    $feed->set_cache_location(storage_path('app/cache'));
-                    $feed->set_feed_url($blog->feed_link);
-                    $feed->set_useragent($this::$useragent);
-                    $feed->init();
-                    $feed->enable_cache(true);
-                    $feed->set_cache_duration(300);
-                    $feed->handle_content_type();
-                    if (!$feed->error) {
-                        foreach ($feed->get_items(0, 8) as $item) {
-                            $author = $item->get_author();
-                            Feed::query()->updateOrInsert([
-                                'blog_id' => $blog->id,
-                                'link' => $item->get_permalink(),
-                            ], [
-                                'title' => $item->get_title(),
-                                'author' => $author ? ($author->get_name() ?: '匿名') : '未知',
-                                'desc' => $item->get_description(),
-                                'created_at' => $item->get_date('Y-m-d H:i:s'),
-                                'updated_at' => $item->get_updated_date('Y-m-d H:i:s'),
-                            ]);
+                    try {
+                        $feed = new SimplePie();
+                        $feed->set_cache_location(storage_path('app/cache'));
+                        $feed->set_feed_url($blog->feed_link);
+                        $feed->set_useragent($this::$useragent);
+                        $feed->init();
+                        $feed->enable_cache(true);
+                        $feed->set_cache_duration(300);
+                        $feed->handle_content_type();
+                        if (!$feed->error) {
+                            foreach ($feed->get_items(0, 8) as $item) {
+                                $author = $item->get_author();
+                                Feed::query()->updateOrInsert([
+                                    'blog_id' => $blog->id,
+                                    'link' => $item->get_permalink(),
+                                ], [
+                                    'title' => $item->get_title(),
+                                    'author' => $author ? ($author->get_name() ?: '匿名') : '未知',
+                                    'desc' => $item->get_description(),
+                                    'created_at' => $item->get_date('Y-m-d H:i:s'),
+                                    'updated_at' => $item->get_updated_date('Y-m-d H:i:s'),
+                                ]);
+                            }
+                            $blog->feed_status = 1;
+                        } else {
+                            $blog->feed_status = 2;
                         }
-                        $blog->feed_status = 1;
-                    } else {
-                        $this->info("fetch rss ".$blog->feed_link." failed: ".$feed->error.PHP_EOL);
-                        $blog->feed_status = 2;
+                        $blog->save();
+                    } catch (\Throwable $e) {
+                        $f++;
+                        // 忽略单个订阅地址发生的错误
+                        continue;
                     }
-                    $blog->save();
+                    $s++;
                 }
             });
-        } catch (\Throwable $e) {
-            $this->error("抓取异常，file: {$e->getFile()}, line: {$e->getLine()}, msg: {$e->getMessage()}");
-        }
+        $this->info("订阅更新完毕，共成功 {$s} 条，失败 {$f} 条");
     }
 }
