@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Blog;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Blogs;
 use App\Http\Resources\BlogsCollection;
 use Illuminate\Http\Request;
 
