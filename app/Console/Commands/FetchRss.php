@@ -60,7 +60,7 @@ class FetchRss extends Command
                     $feed->set_cache_duration(300);
                     $feed->handle_content_type();
                     if (!$feed->error) {
-                        foreach ($feed->get_items(0, 30) as $item) {
+                        foreach ($feed->get_items(0, 8) as $item) {
                             Feed::query()->updateOrInsert([
                                 'blog_id' => $blog->id,
                                 'link' => $item->get_permalink(),

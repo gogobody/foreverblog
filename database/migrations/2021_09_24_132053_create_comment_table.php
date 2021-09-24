@@ -26,7 +26,7 @@ class CreateCommentTable extends Migration
             $table->boolean('is_admin')->default(0)->comment('来源:0=普通用户,1=管理员');
             $table->string('ip', 255)->nullable()->comment('IP');
             $table->boolean('status')->default(2)->comment('状态:0=违规,1=正常,2=审核中');
-            $table->timestamps()->comment('更新时间');
+            $table->timestamps();
         });
     }
 

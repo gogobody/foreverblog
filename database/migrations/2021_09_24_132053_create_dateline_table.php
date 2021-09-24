@@ -19,7 +19,7 @@ class CreateDatelineTable extends Migration
             $table->timestamp('date')->nullable()->comment('时间');
             $table->text('content')->nullable()->comment('内容');
             $table->boolean('status')->nullable()->default(1)->comment('状态,0=审核中,1=审核通过,2=审核不通过');
-            $table->timestamps()->comment('更新时间');
+            $table->timestamps();
         });
     }
 

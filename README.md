@@ -22,6 +22,13 @@
 * [x] RSS 动态收集
 * [x] 博主可自主添加大事记，由管理员审核
 
+### 🛠 如何安装？
+1. clone 源码到本地
+2. 执行 `composer install`
+3. 完善 `env` 文件中的数据库配置
+4. 执行数据库迁移 `php artisan migrate --seed`
+> 安装完成后，默认的后台账号密码为 admin/123456
+
 ### 💖 致谢
 - [Laravel](https://laravel.com/)
 - [Laravel-Admin](http://laravel-admin.org/)
@@ -33,7 +40,7 @@
 
 本项目包含的第三方源码和二进制文件之版权信息另行标注。
 
-版权所有 Copyright © 2017-2019 by 十年之约 ([https://www.foreverblog.cn](https://www.foreverblog.cn))
+版权所有 Copyright © 2017-2021 by 十年之约 ([https://www.foreverblog.cn](https://www.foreverblog.cn))
 
 All rights reserved。
 

@@ -23,7 +23,7 @@ class CreateArticleTable extends Migration
             $table->string('type', 32)->nullable()->comment('类型:notice=公告,article=文章,page=单页');
             $table->string('key', 255)->nullable()->comment('页面标识，用于单页链接');
             $table->integer('read_num')->default(0)->comment('阅读数量');
-            $table->timestamps()->comment('更新时间');
+            $table->timestamps();
         });
     }
 
