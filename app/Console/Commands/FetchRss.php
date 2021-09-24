@@ -61,12 +61,13 @@ class FetchRss extends Command
                     $feed->handle_content_type();
                     if (!$feed->error) {
                         foreach ($feed->get_items(0, 8) as $item) {
+                            $author = $item->get_author();
                             Feed::query()->updateOrInsert([
                                 'blog_id' => $blog->id,
                                 'link' => $item->get_permalink(),
                             ], [
                                 'title' => $item->get_title(),
-                                'author' => $item->get_author()->get_name() ?: '匿名',
+                                'author' => $author ? ($author->get_name() ?: '匿名') : '未知',
                                 'desc' => $item->get_description(),
                                 'created_at' => $item->get_date('Y-m-d H:i:s'),
                                 'updated_at' => $item->get_updated_date('Y-m-d H:i:s'),
