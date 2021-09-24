@@ -83,12 +83,13 @@ class FetchRss extends Command
                         } else {
                             $blog->feed_status = 2;
                         }
-                        $blog->save();
                     } catch (\Throwable $e) {
                         $f++;
+                        $blog->feed_status = 2;
                         // 忽略单个订阅地址发生的错误
                         continue;
                     }
+                    $blog->save();
                 }
             });
         $this->info("订阅更新完毕，成功的博客 {$s} 条，失败 {$f} 条");
