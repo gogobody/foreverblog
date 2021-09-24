@@ -20,6 +20,9 @@ class FetchRss extends Command
      */
     protected $signature = 'fetch:rss';
 
+    public static $useragent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36';
+
+
     /**
      * The console command description.
      *
@@ -49,6 +52,7 @@ class FetchRss extends Command
                 foreach ($blogs as $blog) {
                     $feed = new SimplePie();
                     $feed->set_feed_url($blog->feed_link);
+                    $feed->set_useragent($this::$useragent);
                     $feed->init();
                     $feed->enable_cache(true);
                     $feed->set_cache_duration(300);
@@ -79,7 +83,7 @@ class FetchRss extends Command
                             DB::rollBack();
                         }
                     }else{
-                        print_r("fetch rss ".$blog->feed_link." failed:",$feed->error);
+                        echo("fetch rss ".$blog->feed_link." failed: ".$feed->error.PHP_EOL);
                         if(!Blog::find($blog->id)->update(['feed_status'=>2])){
                             DB::rollBack();
                         }
