@@ -8,6 +8,7 @@ use Illuminate\Console\Command;
 use App\Http\Resources\Blogs;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
 use SimplePie;
 
@@ -93,6 +94,13 @@ class FetchRss extends Command
                     } catch (\Throwable $e) {
                         $f++;
                         $blog->feed_status = 2;
+                        Log::error('订阅更新时出现错误', [
+                            'blog' => $blog->link,
+                            'file' => $e->getFile(),
+                            'line' => $e->getLine(),
+                            'msg' => $e->getMessage(),
+                            'trace' => $e->getTraceAsString(),
+                        ]);
                         // 忽略单个订阅地址发生的错误
                         continue;
                     }
