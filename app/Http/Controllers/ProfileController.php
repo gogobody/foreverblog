@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Blog;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
@@ -73,11 +74,29 @@ class ProfileController extends Controller
         return $this->success('提交成功，审核通过后将会展示在博客详情页。');
     }
 
+    public function checkFeedLink(Request $request)
+    {
+        try {
+            $client = new Client([
+                'timeout' => 30,
+                'verify' => false,
+                'allow_redirects' => false,
+            ]);
+            $response = $client->get($request->link);
+            if ($response->getStatusCode() !== 200) {
+                throw new \Exception('无法访问');
+            }
+        } catch (\Throwable $e) {
+            return $this->error('访问地址出错');
+        }
+
+        return $this->success();
+    }
+
     /**
      * 提交 feed 地址
-     *
      */
-    public function submitFeedlink(Request $request)
+    public function submitFeedLink(Request $request)
     {
         $blog = $request->blog;
         $feed_link = $request->input('feed_link');
