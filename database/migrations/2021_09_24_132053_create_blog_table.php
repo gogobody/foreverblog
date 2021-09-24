@@ -21,6 +21,7 @@ class CreateBlogTable extends Migration
             $table->string('email', 255)->nullable()->comment('邮箱');
             $table->text('message')->comment('寄语');
             $table->boolean('status')->default(0)->comment('状态值:0=审核中,1=正常,2=未通过,3=疑似异常,4=异常');
+            $table->boolean('feed_status')->default(0)->comment('状态值:0=未填写,1=正常,2=抓取异常,3=未检测');
             $table->boolean('is_comment')->default(1)->comment('是否允许评论,1=允许,0=不允许');
             $table->text('history')->nullable()->comment('博客历史事件');
             $table->integer('views')->nullable()->default(0)->comment('阅读量');
@@ -30,7 +31,6 @@ class CreateBlogTable extends Migration
             $table->integer('abnormal_at')->nullable()->default(0)->comment('上次异常时间');
             $table->timestamp('adopted_at')->nullable()->comment('通过时间');
             $table->timestamps();
-            $table->boolean('feed_status')->default(0)->comment('状态值:0=未填写,1=正常,2=抓取异常,3=未检测');
         });
     }
 
