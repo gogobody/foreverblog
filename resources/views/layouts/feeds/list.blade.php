@@ -18,7 +18,7 @@
                                     </div>
 
                                     <h1 class="post-title">
-                                        <a class="post-title-link" href="{{ $item->link }}" itemprop="url">
+                                        <a class="post-title-link" target="_blank" href="{{ $item->link }}" itemprop="url">
                                             <span itemprop="name">{{ $item->title }}</span>
                                         </a>
 
