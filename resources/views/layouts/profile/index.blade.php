@@ -3,6 +3,18 @@
 @section('title', '个人中心 | 十年之约')
 
 @section('content')
+    <style>
+        #changFeed {
+            color: #b6b6b6;
+            font-size: 1rem;
+            text-decoration: none;
+            border: 0;
+        }
+        #changFeed:hover {
+            color: #757575;
+        }
+    </style>
+
     <!-- Main -->
     <article id="main">
 
@@ -31,10 +43,10 @@
                                 <td><a href="{{ $blog->link }}" target="_blank">{{ $blog->link }}</a></td>
                             </tr>
                             <tr>
-                                <td>Feed地址</td>
+                                <td>订阅地址</td>
                                 <td>
                                     <span id="feedlink">{{ $blog->feed_link }}</span>
-                                    <button id="changFeed" class="button-new">修改</button>
+                                    <a id="changFeed" href="javascript:void(0)"><i class="fa fa-edit"></i></a>
                                 </td>
                             </tr>
                             <tr>
@@ -101,7 +113,7 @@
         });
         $('#changFeed').click(function () {
             $("#pop_tip_input").val($('#feedlink').text());
-            poplayer.prompt1('跳转携带输入参数', '确定', '取消', '请输入feed地址，带(http/https)', true, function (link) {
+            poplayer.prompt1('跳转携带输入参数', '确定', '取消', '请输入订阅地址，带(http/https)', true, function (link) {
                 $.ajax({
                     url: "{{ url('/profile/check_feed_link') }}",
                     type: 'post',

@@ -30,7 +30,7 @@ Route::post('blogs', 'BlogController@items');
 
 // RSS
 Route::any('feeds.html', 'FeedController@feeds');
-Route::any('no-rss-list.html', 'FeedController@nofeeds');
+Route::any('feeds/no-rss-list.html', 'FeedController@blogs');
 
 
 // 申请加入

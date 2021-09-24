@@ -39,14 +39,14 @@
             <nav class="site-nav">
                 <false id="menu" class="menu menu-left">
                     <ul>
-                        <li class="page_item page-item-2"><a href="{{ url('no-rss-list.html') }}">NO RSS</a>
+                        <li class="page_item page-item-2"><a href="{{ url('feeds/no-rss-list.html') }}">NO RSS</a>
                         </li>
                     </ul>
                 </false>
                 <div class="site-search">
                     <form class="site-search-form">
                         <input type="text" id="st-search-input" name="s" class="st-search-input st-default-search-input"
-                               autocomplete="off" autocorrect="off" autocapitalize="off" value=""/>
+                               autocomplete="off" autocorrect="off" autocapitalize="off" value="{{ $s }}"/>
                     </form>
                 </div>
             </nav>

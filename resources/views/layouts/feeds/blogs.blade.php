@@ -43,7 +43,7 @@
                 <div class="site-search">
                     <form class="site-search-form">
                         <input type="text" id="st-search-input" name="s" class="st-search-input st-default-search-input"
-                               autocomplete="off" autocorrect="off" autocapitalize="off" value=""/>
+                               autocomplete="off" autocorrect="off" autocapitalize="off" value="{{ $s }}"/>
                     </form>
                 </div>
             </nav>
