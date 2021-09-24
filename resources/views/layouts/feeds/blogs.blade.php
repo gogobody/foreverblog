@@ -37,6 +37,12 @@
 
                                     </h1>
 
+                                    <div class="post-meta">
+                                        <time class="post-time" itemprop="dateCreated">
+                                            {{ \Carbon\Carbon::parse($item->created_at)->format('m-d') }}
+                                        </time>
+                                    </div>
+
                                 </header>
                             </article>
                         @endforeach
