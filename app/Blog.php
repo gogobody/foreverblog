@@ -55,15 +55,14 @@ class Blog extends Model
             ->paginate($page);
     }
 
-    public function feeds($page = 5)
+    public function feeds()
     {
         return $this->hasMany(Feed::class, 'blog_id', 'id');
     }
 
-    public function feedsource($page = 5)
+    public function feedsource()
     {
-        return $this->hasMany(Feed::class, 'blog_id', 'id')
-            ->orderBy('created_at', 'desc')->get();
+        return $this->hasMany(Feed::class, 'blog_id', 'id')->orderBy('created_at', 'desc')->get();
     }
 
     public function getCommentCount()
