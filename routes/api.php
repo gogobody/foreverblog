@@ -23,7 +23,6 @@ Route::get('/inspect', [TaskController::class, 'inspect']); // 自动检测
 Route::prefix('v1')->group(function () {
     Route::prefix('blog')->group(function () {
         Route::post('check', [BlogController::class, 'check']);
-        Route::get('queryall', [BlogController::class, 'queryAllblogs']);
     });
     Route::prefix('feed')->group(function () {
         Route::get('query', [FeedController::class, 'queryRss']);
