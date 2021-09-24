@@ -75,7 +75,24 @@
 <script crossorigin="anonymous" integrity="sha384-ygLIhCkN7QklBUtiFBKpkFIa6x1D0+EM32PXnPzrqv1cNI8h2AqvQgYrMfIBVv6v" src="//lib.baomitu.com/velocity/1.2.2/velocity.ui.min.js"></script>
 <script type="text/javascript" src="/assets/js/feed.js"></script>
 <script src="https://cdn.bootcdn.net/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0c7836ac8678d921d1d4ad74e6affa81";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
 
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
 </body>
 
 </html>
