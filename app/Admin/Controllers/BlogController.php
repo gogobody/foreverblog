@@ -68,8 +68,8 @@ class BlogController extends AdminController
         });
         $grid->column('email', __('邮箱'));
         $grid->column('link', __('链接地址'))->link()->copyable();
-        $grid->column('feed_link', __('feed地址'))->editable()->copyable();
-        $grid->column('feed_status', __('feed状态'))->filter(Blog::FEED_STATUS)->editable('select', Blog::FEED_STATUS);
+        $grid->column('feed_link', __('订阅地址'))->editable()->copyable();
+        $grid->column('feed_status', __('订阅状态'))->filter(Blog::FEED_STATUS)->editable('select', Blog::FEED_STATUS);
         $grid->column('slug', __('Slug'))->editable();
         $grid->column('message', __('寄语'))->limit(40);
         $grid->column('views', __('阅读量'))->sortable();

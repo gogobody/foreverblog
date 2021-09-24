@@ -20,20 +20,6 @@ class Blog extends Model
 
     const IS_NOTIFY = ['否', '是'];
 
-    /*public static function boot()
-    {
-        parent::boot();
-
-        static::updating(function (Blog $blog) {
-            if ($blog->status == 1) {
-                // 更新审核时间
-                $blog->adopted_at = date('Y-m-d H:i:s');
-            } else {
-                $blog->adopted_at = null;
-            }
-        });
-    }*/
-
     public function getAvatarAttribute($value)
     {
         return gravatar($this->attributes['email'] ?? '');
@@ -58,11 +44,6 @@ class Blog extends Model
     public function feeds()
     {
         return $this->hasMany(Feed::class, 'blog_id', 'id');
-    }
-
-    public function feedsource()
-    {
-        return $this->hasMany(Feed::class, 'blog_id', 'id')->orderBy('created_at', 'desc')->get();
     }
 
     public function getCommentCount()

@@ -15,19 +15,14 @@ class Blogs extends JsonResource
 
     public function toArray($request)
     {
-        $data = [
+        return [
             'id' => $this->id,
             'avatar' => $this->avatar,
             'name' => $this->name,
             'date' => $this->created_at->format('Y-m-d'),
             'message' => $this->message,
             'link' => $this->link,
-            'feed_link' => $this->feed_link,
             'url' => url("/blog/{$this->id}.html")
         ];
-        if($request->input('feed')){
-            $data['feed_content'] = $this->feedsource();
-        }
-        return $data;
     }
 }
