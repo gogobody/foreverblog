@@ -30,7 +30,7 @@
                                     <div class="post-author">
                                     </div>
 
-                                    <h1 class="post-title">
+                                    <h1 class="post-title" style="margin-left: 50px">
                                         <a class="post-title-link" href="{{ $item->link }}" itemprop="url">
                                             <span itemprop="name">{{ $item->name }}</span>
                                         </a>
