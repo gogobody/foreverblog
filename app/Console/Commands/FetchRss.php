@@ -47,12 +47,12 @@ class FetchRss extends Command
      */
     public function handle()
     {
-        $s = $f = 0;
+        $i = $s = $f = 0;
         Blog::query()
             ->where('status', 1)
             ->with('feeds')
             ->whereNotNull('feed_link')
-            ->chunk(10, function ($blogs) use (&$s, &$f) {
+            ->chunk(10, function ($blogs) use (&$i, &$s, &$f) {
                 /** @var Blog $blog */
                 foreach ($blogs as $blog) {
                     try {
@@ -73,7 +73,7 @@ class FetchRss extends Command
                                     // 跳过发布时间大于当前时间的博文
                                     continue;
                                 }
-                                Feed::query()->updateOrInsert([
+                                if (Feed::query()->updateOrCreate([
                                     'blog_id' => $blog->id,
                                     'link' => $item->get_permalink(),
                                 ], [
@@ -82,7 +82,9 @@ class FetchRss extends Command
                                     'desc' => $item->get_description(),
                                     'created_at' => $item->get_date('Y-m-d H:i:s'),
                                     'updated_at' => $item->get_updated_date('Y-m-d H:i:s'),
-                                ]);
+                                ])->wasRecentlyCreated) {
+                                    $i++;
+                                }
                             }
                             $blog->feed_status = 1;
                         } else {
@@ -97,6 +99,6 @@ class FetchRss extends Command
                     $blog->save();
                 }
             });
-        $this->info("订阅更新完毕，成功的博客 {$s} 条，失败的博客 {$f} 条");
+        $this->info("订阅更新完毕，请求成功的博客 {$s} 条，请求失败的博客 {$f} 条，本次新增订阅 {$i} 条");
     }
 }
