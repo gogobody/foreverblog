@@ -68,6 +68,11 @@ class FetchRss extends Command
                             $s++;
                             foreach ($feed->get_items(0, 8) as $item) {
                                 $author = $item->get_author();
+                                $time = strtotime($item->get_date('Y-m-d H:i:s'));
+                                if ($time && $time > time()) {
+                                    // 跳过发布时间大于当前时间的博文
+                                    continue;
+                                }
                                 Feed::query()->updateOrInsert([
                                     'blog_id' => $blog->id,
                                     'link' => $item->get_permalink(),
