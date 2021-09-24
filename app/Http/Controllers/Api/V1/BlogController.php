@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Blog;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Blogs;
 use App\Http\Resources\BlogsCollection;
 use Illuminate\Http\Request;
 
@@ -45,25 +44,5 @@ class BlogController extends Controller
                 $result = 4;
         }
         return $this->result(compact('result'));
-    }
-
-    /**
-     * 获取博客函数
-     * 参数：
-     * secret: env 中 querySecret 配置的值，外部访问该 api 的唯一凭证
-     *
-     */
-    public function queryAllblogs(Request $request)
-    {
-        $querySecret = env('QUERY_SECRET');
-        if (!$querySecret) {
-            return $this->error('未配置 QUERY_SECRET ');
-        }
-        $qsec = $request->input('secret');
-        if ($qsec != $querySecret) {
-            return $this->error('secret 错误');
-        }
-        $blogs = new BlogsCollection(Blog::query()->where('status', 1)->paginate());
-        return $this->result($blogs);
     }
 }

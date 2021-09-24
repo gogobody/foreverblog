@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Feed extends Model
 {
-    //
     protected $table = 'feed';
 
     protected $fillable = ['blog_id', 'title', 'author', 'link', 'desc', 'updated_at', 'created_at'];
