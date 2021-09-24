@@ -92,6 +92,6 @@ class FetchRss extends Command
                     $blog->save();
                 }
             });
-        $this->info("订阅更新完毕，成功的博客 {$s} 条，失败 {$f} 条");
+        $this->info("订阅更新完毕，成功的博客 {$s} 条，失败的博客 {$f} 条");
     }
 }

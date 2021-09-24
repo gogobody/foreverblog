@@ -17,12 +17,19 @@
                                         {{ $item->author }}
                                     </div>
 
-                                    <h1 class="post-title">
+                                    <h1 class="post-title" style="margin-left: 50px">
                                         <a class="post-title-link" target="_blank" href="{{ $item->link }}" itemprop="url">
                                             <span itemprop="name">{{ $item->title }}</span>
                                         </a>
 
                                     </h1>
+
+                                    <div class="post-meta">
+                                        <time class="post-time" itemprop="dateCreated">
+                                            {{ \Carbon\Carbon::parse($item->created_at)->format('m-d') }}
+                                        </time>
+                                    </div>
+
                                 </header>
                             </article>
                         @endforeach

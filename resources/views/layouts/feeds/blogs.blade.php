@@ -30,18 +30,12 @@
                                     <div class="post-author">
                                     </div>
 
-                                    <h1 class="post-title" style="margin-left: 50px">
+                                    <h1 class="post-title">
                                         <a class="post-title-link" href="{{ $item->link }}" itemprop="url">
                                             <span itemprop="name">{{ $item->name }}</span>
                                         </a>
 
                                     </h1>
-
-                                    <div class="post-meta">
-                                        <time class="post-time" itemprop="dateCreated">
-                                            {{ \Carbon\Carbon::parse($item->created_at)->format('m-d') }}
-                                        </time>
-                                    </div>
 
                                 </header>
                             </article>
