@@ -66,7 +66,7 @@ class FetchRss extends Command
                                 'link' => $item->get_permalink(),
                             ], [
                                 'title' => $item->get_title(),
-                                'author' => $item->get_author()->get_name(),
+                                'author' => $item->get_author()->get_name() ?: '匿名',
                                 'desc' => $item->get_description(),
                                 'created_at' => $item->get_date('Y-m-d H:i:s'),
                                 'updated_at' => $item->get_updated_date('Y-m-d H:i:s'),
