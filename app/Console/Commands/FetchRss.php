@@ -65,6 +65,7 @@ class FetchRss extends Command
                         $feed->set_cache_duration(300);
                         $feed->handle_content_type();
                         if (!$feed->error) {
+                            $s++;
                             foreach ($feed->get_items(0, 8) as $item) {
                                 $author = $item->get_author();
                                 Feed::query()->updateOrInsert([
@@ -88,9 +89,8 @@ class FetchRss extends Command
                         // 忽略单个订阅地址发生的错误
                         continue;
                     }
-                    $s++;
                 }
             });
-        $this->info("订阅更新完毕，共成功 {$s} 条，失败 {$f} 条");
+        $this->info("订阅更新完毕，成功的博客 {$s} 条，失败 {$f} 条");
     }
 }
