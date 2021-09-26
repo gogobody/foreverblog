@@ -22,7 +22,7 @@ class Blog extends Model
 
     public function getAvatarAttribute()
     {
-        return gravatar($this->email ?? '');
+        return gravatar($this->email);
     }
 
     public function datelines()
