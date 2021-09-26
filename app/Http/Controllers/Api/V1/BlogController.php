@@ -49,7 +49,7 @@ class BlogController extends Controller
 
     public function feeds(Request $request)
     {
-        $feeds = Feed::query()->whereHas('blog', function (Builder $builder) {
+        $feeds = Feed::query()->latest()->whereHas('blog', function (Builder $builder) {
             $builder->where('status', 1);
         })->when($request->query('q'), function (Builder $builder, $q) {
             $fields = "concat(IFNULL(`title`,''),IFNULL(`author`,''),IFNULL(`link`,''),IFNULL(`desc`,''))";
