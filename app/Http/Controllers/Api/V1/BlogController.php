@@ -60,7 +60,7 @@ class BlogController extends Controller
             $blog = $feed->blog;
             $feed->avatar = $blog->avatar;
             $feed->email_hash = md5(strtolower(trim($blog->email)));
-            $feed->setVisible(['id', 'title', 'author', 'avatar', 'email_hash', 'link', 'desc']);
+            $feed->setVisible(['id', 'title', 'author', 'avatar', 'email', 'link', 'desc']);
         });
         return $this->success('success', $feeds);
     }
