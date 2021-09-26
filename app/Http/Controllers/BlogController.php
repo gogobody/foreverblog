@@ -167,6 +167,9 @@ class BlogController extends Controller
             ])) {
                 return $this->error('没有更多的博客啦！');
             }
+            if (empty($blog->adopted_at)) {
+                $blog->adopted_at = $blog->created_at;
+            }
             return $this->success('success', compact('blog'));
         }
         return view('layouts.blogs.random');

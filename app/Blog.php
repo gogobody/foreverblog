@@ -20,17 +20,9 @@ class Blog extends Model
 
     const IS_NOTIFY = ['否', '是'];
 
-    public function getAvatarAttribute($value)
+    public function getAvatarAttribute()
     {
         return gravatar($this->email ?? '');
-    }
-
-    public function getAdoptedAtAttribute($value)
-    {
-        if (empty($this->adopted_at)) {
-            return $this->created_at;
-        }
-        return $value;
     }
 
     public function datelines()

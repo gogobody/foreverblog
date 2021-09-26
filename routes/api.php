@@ -19,6 +19,7 @@ Route::get('/inspect', [TaskController::class, 'inspect']); // 自动检测
 
 Route::prefix('v1')->group(function () {
     Route::prefix('blog')->group(function () {
+        Route::get('random', [BlogController::class, 'random']);
         Route::post('check', [BlogController::class, 'check']);
         Route::get('feeds', [BlogController::class, 'feeds']);
     });

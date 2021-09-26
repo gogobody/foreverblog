@@ -47,6 +47,14 @@ class BlogController extends Controller
         return $this->result(compact('result'));
     }
 
+    public function random()
+    {
+        /** @var Blog $blog */
+        $blog = Blog::query()->orderByRaw("RAND()")->first(['name', 'link']);
+        $blog->email = md5(strtolower(trim($blog->email)));
+        return $this->success('success', $blog);
+    }
+
     public function feeds(Request $request)
     {
         $feeds = Feed::query()->latest()->whereHas('blog', function (Builder $builder) {
