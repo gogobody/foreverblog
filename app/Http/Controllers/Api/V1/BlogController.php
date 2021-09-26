@@ -50,8 +50,8 @@ class BlogController extends Controller
     public function random()
     {
         /** @var Blog $blog */
-        $blog = Blog::query()->orderByRaw("RAND()")->first(['name', 'email', 'link']);
-        $blog->email = md5(strtolower(trim($blog->email)));
+        $blog = Blog::query()->orderByRaw("RAND()")->first(['name', 'email', 'link'])->toArray();
+        $blog['email'] = md5(strtolower(trim($blog['email'])));
         return $this->success('success', $blog);
     }
 
