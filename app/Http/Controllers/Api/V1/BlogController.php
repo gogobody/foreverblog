@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Blog;
+use App\Feed;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\BlogsCollection;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -44,5 +45,22 @@ class BlogController extends Controller
                 $result = 4;
         }
         return $this->result(compact('result'));
+    }
+
+    public function feeds(Request $request)
+    {
+        $feeds = Feed::query()->whereHas('blog', function (Builder $builder) {
+            $builder->where('status', 1);
+        })->when($request->query('q'), function (Builder $builder, $q) {
+            $fields = "concat(IFNULL(`title`,''),IFNULL(`author`,''),IFNULL(`link`,''),IFNULL(`desc`,''))";
+            $builder->whereRaw("{$fields} like ?", ["%{$q}%"]);
+        })->paginate();
+        $feeds->getCollection()->each(function (Feed $feed) {
+            /** @var Blog $blog */
+            $blog = $feed->blog;
+            $feed->avatar = $blog->avatar;
+            $feed->setVisible(['id', 'title', 'author', 'avatar', 'link', 'desc']);
+        });
+        return $this->success('success', $feeds);
     }
 }
