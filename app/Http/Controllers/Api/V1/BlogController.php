@@ -54,7 +54,7 @@ class BlogController extends Controller
         })->when($request->query('q'), function (Builder $builder, $q) {
             $fields = "concat(IFNULL(`title`,''),IFNULL(`author`,''),IFNULL(`link`,''),IFNULL(`desc`,''))";
             $builder->whereRaw("{$fields} like ?", ["%{$q}%"]);
-        })->paginate();
+        })->paginate(30);
         $feeds->getCollection()->each(function (Feed $feed) {
             /** @var Blog $blog */
             $blog = $feed->blog;
