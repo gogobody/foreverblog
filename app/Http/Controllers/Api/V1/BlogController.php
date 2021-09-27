@@ -7,6 +7,7 @@ use App\Feed;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
@@ -68,7 +69,8 @@ class BlogController extends Controller
             $blog = $feed->blog;
             $feed->avatar = $blog->avatar;
             $feed->email = md5(strtolower(trim($blog->email)));
-            $feed->setVisible(['id', 'title', 'author', 'avatar', 'email', 'link', 'desc']);
+            $feed->desc = Str::limit(strip_tags($feed->desc), 200);
+            $feed->setVisible(['id', 'title', 'author', 'avatar', 'email', 'link', 'desc', 'created_at']);
         });
         return $this->success('success', $feeds);
     }
